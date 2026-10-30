@@ -107,7 +107,7 @@ export default async function Home() {
       </section>
 
       {/* Intro + carousel */}
-      <section className="bg-white pb-8 pt-14 sm:pb-6 sm:pt-[85px]">
+      <section className="bg-white py-14 sm:py-[85px]">
         <div className="mx-auto grid max-w-[1100px] items-center gap-10 px-5 md:grid-cols-2 md:gap-8 min-[1100px]:grid-cols-[1fr_560px] min-[1100px]:gap-10 min-[1100px]:pl-[62px]">
           <div>
             <h1 className="font-cormorant text-[28px] font-semibold leading-[1.35] text-black sm:text-[32px]">{s.intro_heading}</h1>
