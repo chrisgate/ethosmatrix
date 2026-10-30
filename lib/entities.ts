@@ -1,4 +1,4 @@
-import { CATEGORIES, GALLERY_SECTIONS } from "./content";
+import { CATEGORIES } from "./content";
 
 export type Field = {
   name: string;
@@ -149,12 +149,11 @@ export const ENTITIES: Record<string, Entity> = {
     ],
   },
   gallery: {
-    table: "gallery", label: "Event photo", plural: "Gallery (Events)", titleField: "caption",
-    orderBy: "section, sort, id", columns: ["caption", "section", "sort"],
+    table: "gallery", label: "Event photo", plural: "Gallery: event photos", titleField: "caption",
+    orderBy: "sort, id", columns: ["caption", "sort"],
     fields: [
       { name: "image_id", label: "Image", type: "image", required: true },
-      { name: "section", label: "Show in", type: "select", options: GALLERY_SECTIONS, help: "The Events page has three carousels. Add the same photo to several to repeat it." },
-      { name: "caption", label: "Caption", type: "text" },
+      { name: "caption", label: "Caption", type: "text", help: "Shown on hover and in the full-screen viewer. Event photos appear under the Events filter; project photos come from each project automatically." },
       { name: "sort", label: "Order (lowest first)", type: "number" },
     ],
   },
