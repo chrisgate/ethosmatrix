@@ -18,7 +18,7 @@ export function Faq({ items, title, className = "" }: { items: FaqItem[]; title?
           })),
         }}
       />
-      {title && <h2 className="text-center font-quicksand text-[32px] font-semibold text-[#222] sm:text-[40px]">{title}</h2>}
+      {title && <h2 className="h-accent text-center font-quicksand text-[32px] font-semibold text-[#222] sm:text-[40px]">{title}</h2>}
       <div className={`${title ? "mt-10" : ""} divide-y divide-black/10 border-y border-black/10`}>
         {items.map((f) => (
           <details key={f.question} className="group py-1">

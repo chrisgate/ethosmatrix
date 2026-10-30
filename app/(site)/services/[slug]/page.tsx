@@ -108,7 +108,7 @@ export default async function ServicePage({ params }: Props) {
       {projects.length > 0 && (
         <section className="bg-mist py-16">
           <div className="mx-auto max-w-[1140px] px-5">
-            <h2 className="mb-8 text-center font-quicksand text-[32px] font-semibold text-[#222]">Related projects</h2>
+            <h2 className="h-accent mb-8 text-center font-quicksand text-[32px] font-semibold text-[#222]">Related projects</h2>
             <div className="grid gap-6 md:grid-cols-3">
               {projects.map((p) => <ProjectCard key={p.id} p={p} label={sv.related_category} />)}
             </div>

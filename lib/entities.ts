@@ -227,6 +227,7 @@ export const SETTINGS_GROUPS: { title: string; fields: Field[] }[] = [
     { name: "banner_about_id", label: "About page banner", type: "image" },
     { name: "banner_projects_id", label: "Projects page banner", type: "image" },
     { name: "banner_gallery_id", label: "Gallery page banner", type: "image" },
+    { name: "gallery_intro", label: "Gallery intro line", type: "textarea" },
     { name: "banner_contact_id", label: "Contact page banner", type: "image" },
     { name: "banner_insights_id", label: "Insights page banner", type: "image" },
   ]},

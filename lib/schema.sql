@@ -145,3 +145,7 @@ CREATE TABLE IF NOT EXISTS posts (
   published_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   sort INT NOT NULL DEFAULT 0
 );
+
+-- gallery: intrinsic size of each photo (lets masonry layouts reserve space)
+ALTER TABLE media ADD COLUMN IF NOT EXISTS width INT;
+ALTER TABLE media ADD COLUMN IF NOT EXISTS height INT;

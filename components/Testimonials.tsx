@@ -14,11 +14,12 @@ export async function Testimonials() {
   return (
     <section className="bg-mist py-16 sm:py-[110px]">
       <div className="mx-auto max-w-[1000px] px-5">
-        <h2 className="text-center font-inter text-[32px] font-bold text-navy sm:text-[40px]">Satisfied Customers</h2>
+        <h2 className="h-accent text-center font-inter text-[32px] font-bold text-navy sm:text-[40px]">Satisfied Customers</h2>
         <Slider perView={2} perViewMobile={1} autoplay={6000} dots dotActive="bg-orange" className="mt-14" arrows={false}>
           {items.map((t) => (
             <div key={t.id} className="px-3 pb-6">
-              <div className="relative bg-white px-8 py-7 shadow-[0_1px_0_rgba(0,0,0,.03)]">
+              <div className="relative bg-white px-8 py-7 shadow-[0_6px_20px_-12px_rgba(0,0,0,.25)]">
+                <span aria-hidden className="pointer-events-none absolute right-5 top-1 select-none font-playfair text-[64px] leading-none text-gold/25">”</span>
                 <p className="font-playfair text-[13px] italic leading-relaxed text-[#6d6d85]">{t.quote}</p>
                 <span className="absolute -bottom-2 left-12 h-4 w-4 rotate-45 bg-white" />
               </div>

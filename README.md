@@ -35,7 +35,7 @@ enquiry. Without them, enquiries are still saved and visible in /admin.
 
 ## Images
 Uploads are resized (max 2400px wide) and stored as WebP in `uploads/`. `npm run optimize` recompresses
-existing files.
+existing files. `npm run measure` records each photo's dimensions (used by the gallery layout; run automatically by the seed and the optimizer).
 
 ## Production
 - Set `DATABASE_URL`, `SESSION_SECRET` (long random string), `SITE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.

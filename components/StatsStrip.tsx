@@ -38,11 +38,10 @@ export function StatsStrip({ stats }: { stats: Stat[] }) {
   return (
     <section className="bg-white pb-6 pt-2 sm:pb-12">
       <div
-        className="mx-auto grid max-w-[1000px] gap-y-10 px-5 text-center"
-        style={{ gridTemplateColumns: `repeat(${Math.min(stats.length, 4)}, minmax(0, 1fr))` }}
+        className="mx-auto flex max-w-[1000px] flex-wrap justify-center gap-x-10 gap-y-10 px-5 text-center sm:gap-x-16"
       >
         {stats.map((st) => (
-          <div key={st.id} className="px-2">
+          <div key={st.id} className="min-w-[120px] flex-1 px-2 sm:flex-none sm:min-w-[170px]">
             <div className="font-quicksand text-[34px] font-semibold leading-none text-gold-title sm:text-[56px]">
               <CountUp to={st.value} suffix={st.suffix} />
             </div>

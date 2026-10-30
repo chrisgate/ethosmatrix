@@ -1,7 +1,7 @@
 import { q } from "./db";
 
 export type Settings = Record<string, string>;
-export type Media = { id: number; filename: string; alt: string; original_name: string };
+export type Media = { id: number; filename: string; alt: string; original_name: string; width: number | null; height: number | null };
 
 export const CATEGORIES = [
   "Conceptual Design",
@@ -40,7 +40,7 @@ export const paragraphs = (s?: string | null) =>
 export async function getMediaByIds(ids: number[]): Promise<Media[]> {
   if (!ids.length) return [];
   const rows = await q<Media>(
-    "SELECT id, filename, alt, original_name FROM media WHERE id = ANY($1::int[])",
+    "SELECT id, filename, alt, original_name, width, height FROM media WHERE id = ANY($1::int[])",
     [ids],
   );
   const map = new Map(rows.map((r) => [r.id, r]));

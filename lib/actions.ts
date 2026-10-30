@@ -38,9 +38,10 @@ async function saveFile(file: File): Promise<number | null> {
   }
   const filename = `${randomBytes(4).toString("hex")}-${base}${outExt}`;
   await writeFile(path.join(UPLOAD_DIR, filename), data);
+  const meta = await sharp(data).metadata();
   const [row] = await q<{ id: number }>(
-    "INSERT INTO media (filename, original_name, mime, size, alt) VALUES ($1,$2,$3,$4,$5) RETURNING id",
-    [filename, file.name, outMime, data.length, base.replace(/-/g, " ")],
+    "INSERT INTO media (filename, original_name, mime, size, alt, width, height) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id",
+    [filename, file.name, outMime, data.length, base.replace(/-/g, " "), meta.width ?? null, meta.height ?? null],
   );
   return row.id;
 }

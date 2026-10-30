@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getMedia, getSettings, lines } from "@/lib/content";
 import { q } from "@/lib/db";
+import { SiteEffects } from "@/components/SiteEffects";
 import {
   ArrowCircleIcon, CaretDown, CheckCircleIcon, ClockIcon, DoubleChevron, InfoIcon, MailIcon, PhoneIcon, PinIcon,
 } from "@/components/Icons";
@@ -68,7 +69,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       </div>
 
       {/* header */}
-      <header className="relative z-40 bg-black text-white">
+      <header className="sticky top-0 z-40 bg-black text-white shadow-[0_8px_24px_-14px_rgba(0,0,0,.7)]">
         <div className="mx-auto flex h-[66px] max-w-[1240px] items-center justify-between px-5">
           <Link href="/" className="flex shrink-0 items-center">
             {logo ? (
@@ -119,6 +120,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       </header>
 
       <main>{children}</main>
+      <SiteEffects />
 
       {/* footer */}
       <footer className="bg-footer text-white">

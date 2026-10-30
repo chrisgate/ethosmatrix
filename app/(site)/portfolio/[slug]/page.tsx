@@ -79,9 +79,9 @@ export default async function ProjectPage({ params }: Props) {
       {/* key facts */}
       {facts.length > 0 && (
         <section className="border-b border-black/10 bg-white">
-          <dl className="mx-auto grid max-w-[1000px] gap-6 px-5 py-7 text-center" style={{ gridTemplateColumns: `repeat(${Math.min(facts.length, 5)}, minmax(0, 1fr))` }}>
+          <dl className="mx-auto flex max-w-[1000px] flex-wrap justify-center gap-x-12 gap-y-5 px-5 py-7 text-center">
             {facts.map(([k, v]) => (
-              <div key={k}>
+              <div key={k} className="min-w-[110px]">
                 <dt className="font-montserrat text-[10px] font-bold uppercase tracking-[.2em] text-gold-dark">{k}</dt>
                 <dd className="mt-1 font-poppins text-[13px] font-medium text-[#222] sm:text-[15px]">{v}</dd>
               </div>
@@ -189,7 +189,7 @@ export default async function ProjectPage({ params }: Props) {
       {others.length > 0 && (
         <section className="bg-mist py-16">
           <div className="mx-auto max-w-[1140px] px-5">
-            <h2 className="mb-8 text-center font-quicksand text-[32px] font-semibold text-[#222]">Other projects</h2>
+            <h2 className="h-accent mb-8 text-center font-quicksand text-[32px] font-semibold text-[#222]">Other projects</h2>
             <div className="grid gap-6 md:grid-cols-3">
               {others.map((o) => <ProjectCard key={o.id} p={o} />)}
             </div>

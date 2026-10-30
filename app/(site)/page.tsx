@@ -201,7 +201,7 @@ export default async function Home() {
       {featured.length > 0 && (
         <section className="bg-white py-16 sm:py-[90px]">
           <div className="mx-auto max-w-[1140px] px-5">
-            <h2 className="text-center font-quicksand text-[32px] font-semibold text-[#222] sm:text-[40px]">{s.featured_title || "Featured projects"}</h2>
+            <h2 className="h-accent text-center font-quicksand text-[32px] font-semibold text-[#222] sm:text-[40px]">{s.featured_title || "Featured projects"}</h2>
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {featured.map((p) => <ProjectCard key={p.id} p={p} />)}
             </div>
@@ -216,13 +216,13 @@ export default async function Home() {
       {steps.length > 0 && (
         <section className="bg-cream py-16 sm:py-[90px]">
           <div className="mx-auto max-w-[1140px] px-5">
-            <h2 className="text-center font-quicksand text-[32px] font-semibold text-[#222] sm:text-[40px]">{s.process_title || "How we work"}</h2>
+            <h2 className="h-accent text-center font-quicksand text-[32px] font-semibold text-[#222] sm:text-[40px]">{s.process_title || "How we work"}</h2>
             {s.process_subtitle && <p className="mt-2 text-center font-quicksand text-sm font-medium uppercase tracking-[.2em] text-[#8b5e3c]">{s.process_subtitle}</p>}
-            <ol className="relative mt-12 grid gap-10 md:gap-6" style={{ gridTemplateColumns: `repeat(${Math.min(steps.length, 4)}, minmax(0, 1fr))` }}>
+            <ol className={`relative mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-6 ${{ 1: "lg:grid-cols-1", 2: "lg:grid-cols-2", 3: "lg:grid-cols-3" }[steps.length as 1 | 2 | 3] ?? "lg:grid-cols-4"}`}>
               {steps.map((st, i) => (
                 <li key={st.id} className="relative px-2 text-center">
                   <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold font-quicksand text-xl font-semibold text-white shadow-md">{i + 1}</div>
-                  {i < steps.length - 1 && <span className="absolute left-[calc(50%+40px)] right-[-50%] top-7 hidden h-px bg-gold/40 md:block" aria-hidden />}
+                  {i < steps.length - 1 && <span className="absolute left-[calc(50%+40px)] right-[-50%] top-7 hidden h-px bg-gold/40 lg:block" aria-hidden />}
                   <h3 className="mt-5 font-playfair text-[22px] font-semibold text-[#222]">{st.title}</h3>
                   <p className="mt-2 font-quicksand text-sm font-light leading-relaxed text-[#555]">{st.description}</p>
                 </li>

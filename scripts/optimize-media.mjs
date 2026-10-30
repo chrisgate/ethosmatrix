@@ -6,6 +6,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import pg from "pg";
 import sharp from "sharp";
+import { measureAll } from "./measure-media.mjs";
 
 const UPLOADS = path.join(process.cwd(), "uploads");
 
@@ -23,7 +24,7 @@ export async function optimizeAll(pool) {
       if (out.length >= buf.length * 0.95 && m.mime === "image/webp") continue;
       const filename = m.filename.replace(/\.[^.]+$/, "") + ".webp";
       await writeFile(path.join(UPLOADS, filename), out);
-      await pool.query("UPDATE media SET filename=$1, mime='image/webp', size=$2 WHERE id=$3", [filename, out.length, m.id]);
+      await pool.query("UPDATE media SET filename=$1, mime='image/webp', size=$2, width=NULL, height=NULL WHERE id=$3", [filename, out.length, m.id]);
       if (filename !== m.filename) await unlink(file).catch(() => {});
       saved += buf.length - out.length;
       changed++;
@@ -32,6 +33,7 @@ export async function optimizeAll(pool) {
     }
   }
   console.log(`optimized ${changed} images, saved ${(saved / 1048576).toFixed(1)} MB`);
+  await measureAll(pool);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

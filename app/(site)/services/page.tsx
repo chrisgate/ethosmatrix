@@ -26,7 +26,7 @@ export default async function ServicesPage() {
       <section className="bg-white pb-20 pt-6">
         <div className="mx-auto grid max-w-[1140px] gap-6 px-5 md:grid-cols-2">
           {services.map((sv) => (
-            <Link key={sv.id} href={`/services/${sv.slug}`} className="group overflow-hidden rounded-[24px] bg-black">
+            <Link key={sv.id} href={`/services/${sv.slug}`} className="group overflow-hidden rounded-[24px] bg-black shadow-md transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_40px_-18px_rgba(0,0,0,.55)]">
               <div className="relative aspect-[16/10] overflow-hidden">
                 {sv.filename && <Image src={`/media/${sv.filename}`} alt={sv.title} fill sizes="(min-width:768px) 560px, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />}
               </div>

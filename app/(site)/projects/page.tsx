@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
           {CATEGORIES.map((c) => {
             const m = byId.get(Number(s[CATEGORY_IMAGE_KEY[c]]));
             return (
-              <Link key={c} href={`/projects/${categorySlug(c)}`} className="group relative block h-[320px] overflow-hidden rounded-[24px] bg-[#222] sm:h-[400px]">
+              <Link key={c} href={`/projects/${categorySlug(c)}`} className="group relative block h-[320px] overflow-hidden rounded-[24px] bg-[#222] shadow-md transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_40px_-18px_rgba(0,0,0,.55)] sm:h-[400px]">
                 {m && <Image src={`/media/${m.filename}`} alt={c} fill sizes="(min-width:768px) 560px, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />}
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
