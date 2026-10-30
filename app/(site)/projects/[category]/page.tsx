@@ -9,14 +9,14 @@ import {
 
 type Props = {
   params: Promise<{ category: string }>;
-  searchParams: Promise<{ category?: string; location?: string; year?: string; status?: string }>;
+  searchParams: Promise<{ category?: string; location?: string; status?: string }>;
 };
 
 const find = (slug: string) => CATEGORIES.find((c) => categorySlug(c) === slug);
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).category;
-  if (slug === "all") return { title: "All Projects", description: "Browse every Ethos Matrix project by category, location and year." };
+  if (slug === "all") return { title: "All Projects", description: "Browse every Ethos Matrix project by category and location." };
   const c = find(slug);
   return c ? { title: c, description: `${c} projects by Ethos Matrix.` } : {};
 }
@@ -32,11 +32,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const category = fixed ?? CATEGORIES.find((c) => categorySlug(c) === sp.category);
   const s = await getSettings();
   const [projects, facets, banner] = await Promise.all([
-    getProjects({ category, location: sp.location, year: sp.year, status: sp.status }),
+    getProjects({ category, location: sp.location, status: sp.status }),
     getProjectFacets(fixed),
     getMedia(fixed ? s[CATEGORY_IMAGE_KEY[fixed]] : s.banner_projects_id),
   ]);
-  const filtered = Boolean(sp.location || sp.year || sp.status || (isAll && sp.category));
+  const filtered = Boolean(sp.location || sp.status || (isAll && sp.category));
   const select = "w-full border border-black/15 bg-white px-3 py-2.5 font-quicksand text-sm text-[#333] focus:border-gold focus:outline-none";
 
   return (
@@ -47,7 +47,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         crumbs={[{ label: "Home", href: "/" }, ...(fixed ? [{ label: "All Projects", href: "/projects/all" }] : [{ label: "Projects", href: "/projects" }, { label: "All Projects" }])]}
       />
       <section className="bg-white pb-20 pt-6">
-        <form method="get" className="mx-auto mb-8 grid max-w-[1140px] gap-3 px-5 sm:grid-cols-2 lg:grid-cols-[repeat(4,1fr)_auto]">
+        <form method="get" className="mx-auto mb-8 flex max-w-[1140px] flex-wrap items-center gap-3 px-5 [&>select]:min-w-[200px] [&>select]:flex-1">
           {isAll && (
             <select name="category" defaultValue={sp.category ?? ""} className={select} aria-label="Category">
               <option value="">All categories</option>
@@ -58,12 +58,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             <select name="location" defaultValue={sp.location ?? ""} className={select} aria-label="Location">
               <option value="">Any location</option>
               {facets.locations.map((l) => <option key={l}>{l}</option>)}
-            </select>
-          )}
-          {facets.years.length > 0 && (
-            <select name="year" defaultValue={sp.year ?? ""} className={select} aria-label="Year">
-              <option value="">Any year</option>
-              {facets.years.map((y) => <option key={y}>{y}</option>)}
             </select>
           )}
           {facets.statuses.length > 0 && (
