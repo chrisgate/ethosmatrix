@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Crossfade } from "@/components/Crossfade";
 import { Slider } from "@/components/Slider";
+import { CoverflowSlider } from "@/components/CoverflowSlider";
 import { InfoIcon } from "@/components/Icons";
 import { Testimonials } from "@/components/Testimonials";
 import { CtaBand } from "@/components/CtaBand";
@@ -118,17 +119,13 @@ export default async function Home() {
             <Link href="/about" className="btn-gold mt-6">Read More</Link>
           </div>
           {carousel.length > 0 && (
-            <Slider
-              autoplay={5000}
-              className="overflow-hidden rounded-[36px]"
-              arrowClass="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,.6)]"
-            >
+            <CoverflowSlider autoplay={3000} className="aspect-[560/636] w-full">
               {carousel.map((m, i) => (
-                <div key={m.id} className="relative aspect-[560/636] w-full">
-                  <Image src={`/media/${m.filename}`} alt={m.alt} fill sizes="(min-width:768px) 560px, 100vw" priority={i === 0} className="object-cover" />
+                <div key={m.id} className="relative h-full w-full">
+                  <Image src={`/media/${m.filename}`} alt={m.alt} fill sizes="(min-width:768px) 560px, 100vw" priority={i === 0} draggable={false} className="object-cover" />
                 </div>
               ))}
-            </Slider>
+            </CoverflowSlider>
           )}
         </div>
       </section>
