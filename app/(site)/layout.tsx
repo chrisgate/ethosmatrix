@@ -36,7 +36,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
     { href: "/about", label: "About us" },
     { href: "/services", label: "Services", children: services.map((x) => [`/services/${x.slug}`, x.title] as [string, string]) },
     { href: "/projects", label: "Projects", children: PROJECT_LINKS },
-    ...(postCount > 0 ? [{ href: "/insights", label: "Insights" }] : []),
+    ...(postCount > 0 ? [{ href: "/blog", label: "Blog" }] : []),
     { href: "/gallery", label: "Gallery" },
     { href: "/contact", label: "Contact" },
   ];

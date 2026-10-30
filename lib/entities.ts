@@ -115,13 +115,14 @@ export const ENTITIES: Record<string, Entity> = {
     ],
   },
   posts: {
-    table: "posts", label: "Article", plural: "Insights (blog)", titleField: "title",
-    orderBy: "published_at DESC, id DESC", columns: ["title", "published_at", "published"], slugTable: "posts",
+    table: "posts", label: "Article", plural: "Blog articles", titleField: "title",
+    orderBy: "published_at DESC, id DESC", columns: ["title", "categories", "published_at", "published"], slugTable: "posts",
     fields: [
       { name: "title", label: "Title", type: "text", required: true },
       { name: "slug", label: "URL slug", type: "slug", help: "Leave blank to generate from the title." },
-      { name: "excerpt", label: "Short summary", type: "textarea" },
-      { name: "body", label: "Article", type: "textarea", help: "Blank lines create new paragraphs. Lines starting with ## become sub-headings." },
+      { name: "categories", label: "Categories", type: "text", help: "Comma separated, e.g. Article, Construction" },
+      { name: "excerpt", label: "Short summary", type: "textarea", help: "Shown on the blog list and at the top of the article." },
+      { name: "body", label: "Article", type: "textarea", help: "Blank lines start a new paragraph. ## Heading, ### Sub-heading, - bullet, 1. numbered, **bold**, [link text](https://example.com)." },
       { name: "cover_id", label: "Cover image", type: "image" },
       { name: "published_at", label: "Publish date", type: "date" },
       { name: "published", label: "Published", type: "checkbox" },
@@ -235,7 +236,8 @@ export const SETTINGS_GROUPS: { title: string; fields: Field[] }[] = [
     { name: "banner_gallery_id", label: "Gallery page banner", type: "image" },
     { name: "gallery_intro", label: "Gallery intro line", type: "textarea" },
     { name: "banner_contact_id", label: "Contact page banner", type: "image" },
-    { name: "banner_insights_id", label: "Insights page banner", type: "image" },
+    { name: "banner_insights_id", label: "Blog page banner", type: "image" },
+    { name: "blog_intro", label: "Blog intro line", type: "textarea" },
   ]},
   { title: "Footer", fields: [
     { name: "footer_services", label: "Footer services list (one per line)", type: "textarea" },

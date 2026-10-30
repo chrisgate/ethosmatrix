@@ -19,7 +19,7 @@ export default async function Dashboard() {
     ["New enquiries", c.fresh, "/admin/appointments"],
     ["Projects", c.projects, "/admin/projects"],
     ["Services", c.services, "/admin/services"],
-    ["Insights articles", c.posts, "/admin/posts"],
+    ["Blog articles", c.posts, "/admin/posts"],
     ["FAQs", c.faqs, "/admin/faqs"],
     ["Event photos", c.events, "/admin/gallery"],
     ["Testimonials", c.testimonials, "/admin/testimonials"],

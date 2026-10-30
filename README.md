@@ -20,14 +20,17 @@ Already seeded before the revamp? Run `npm run migrate:revamp` to add the new st
 - **Site content:** brand and contact details, home page text, leadership message, About page, quote page options, page banners.
 - **Projects:** categories, facts (client, location, year, size, status), description, scope, video link, before/after photos, gallery.
 - **Services:** card text and hover image, plus the service page (introduction, what's included, related projects).
-- **Stats counters, How we work (steps), FAQs** (general or tied to a service), **Insights (blog)**.
+- **Stats counters, How we work (steps), FAQs** (general or tied to a service), **Blog**.
 - **Hero slides, client logos, testimonials, events gallery** (three carousels), **media library**.
 - **Enquiries:** every quote or contact request, with status tracking.
 
 ## Public pages
 Home, About, Services (+ one page per service), Projects (by category, or all with filters), project pages,
-Insights (shown in the menu once there is a published article), Events gallery, Contact, and
+Blog (shown in the menu once there is a published article), Events gallery, Contact, and
 Schedule an Appointment (`/quote`, the project brief form).
+
+## Blog
+The blog lives at `/blog` (the old `/insights` address redirects there). Write articles under **Blog articles** in the admin: categories are comma separated (e.g. `Article, Construction`), and the body supports `## Heading`, `### Sub-heading`, `- bullets`, `1. numbered lists`, `**bold**` and `[links](https://example.com)`. Readers can search, filter by category or month, and share each article. `npm run seed:blog` adds three starter articles to a database that has none (edit or unpublish them as you like).
 
 ## WhatsApp chat
 The green button (bottom right) opens a chat card with a greeting and an **Open chat** button that starts a WhatsApp conversation with a prefilled message, including the page the visitor was on. It opens by itself once, a few seconds into a visitor's first page view. The number, texts and delay are under **Site content > WhatsApp chat** (the number is "WhatsApp number" under Brand & contact).

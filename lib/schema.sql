@@ -149,3 +149,6 @@ CREATE TABLE IF NOT EXISTS posts (
 -- gallery: intrinsic size of each photo (lets masonry layouts reserve space)
 ALTER TABLE media ADD COLUMN IF NOT EXISTS width INT;
 ALTER TABLE media ADD COLUMN IF NOT EXISTS height INT;
+
+-- blog: comma-separated categories, e.g. "Article, Construction"
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS categories TEXT NOT NULL DEFAULT '';

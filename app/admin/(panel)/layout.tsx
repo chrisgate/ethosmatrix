@@ -32,7 +32,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         { href: "/admin/testimonials", label: "Testimonials" },
       ],
     },
-    { title: "Blog", items: [{ href: "/admin/posts", label: "Insights" }] },
+    { title: "Blog", items: [{ href: "/admin/posts", label: "Blog articles" }] },
     { title: "Files", items: [{ href: "/admin/media", label: "Media library" }] },
     { title: "Leads", items: [{ href: "/admin/appointments", label: "Enquiries", badge: fresh }] },
   ];

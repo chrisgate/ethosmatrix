@@ -18,7 +18,7 @@ const routes = [
   "/projects", "/projects/all", "/projects/conceptual-design", "/projects/architectural-design",
   "/projects/construction", "/projects/project-management",
   ...projects.map((p) => `/portfolio/${p.slug}`),
-  "/gallery", "/contact", "/quote", "/insights", ...posts.map((p) => `/insights/${p.slug}`),
+  "/gallery", "/contact", "/quote", "/blog", ...posts.map((p) => `/blog/${p.slug}`),
 ];
 
 const get = async (path) => {

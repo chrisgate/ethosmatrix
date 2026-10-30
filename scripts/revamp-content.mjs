@@ -2,6 +2,7 @@
 // already says (services, categories, address, hours) so nothing invented ends up on the site.
 // Used by seed.mjs and by migrate-revamp.mjs (for databases seeded before the revamp).
 import { scrapeProject } from "./scrape.mjs";
+import { applyBlogContent } from "./blog-content.mjs";
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
@@ -147,6 +148,7 @@ export async function applyRevampContent(q, { scrapeFacts = true } = {}) {
     }
     console.log(`project facts scraped for ${n} projects`);
   }
+  await applyBlogContent(q);
   console.log("revamp content applied");
 }
 
