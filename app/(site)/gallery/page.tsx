@@ -33,9 +33,9 @@ export default async function GalleryPage() {
       .map((id) => make(id, p.title, p.categories.length ? p.categories : ["Projects"], `/portfolio/${p.slug}`))
       .filter(Boolean) as GalleryItem[],
   );
-  groups.push(eventMedia.map((e) => make(e.image_id, e.caption || "Ethos Matrix event", ["Events"])).filter(Boolean) as GalleryItem[]);
-  const items: GalleryItem[] = [];
-  const seen = new Set<string>();
+  // Event photos lead the "All" view, followed by the interleaved project photos.
+  const items: GalleryItem[] = eventMedia.map((e) => make(e.image_id, e.caption || "Ethos Matrix event", ["Events"])).filter(Boolean) as GalleryItem[];
+  const seen = new Set<string>(items.map((it) => `${it.id}-${it.tags[0]}-${it.title}`));
   for (let i = 0; groups.some((g) => i < g.length); i++) {
     for (const g of groups) {
       const it = g[i];
