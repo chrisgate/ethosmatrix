@@ -1,5 +1,7 @@
 import { q } from "@/lib/db";
 import type { Field } from "@/lib/entities";
+import { bodyToHtml } from "@/lib/richtext";
+import { RichTextEditor } from "./RichTextEditor";
 
 type MediaRow = { id: number; filename: string; alt: string; original_name: string };
 
@@ -57,7 +59,7 @@ export async function EntityForm({
   for (const f of fields) {
     if (f.type === "relation" && f.source) relations[f.source] ??= await q<{ id: number; title: string }>("SELECT id, title FROM " + f.source + " ORDER BY sort, id");
   }
-  const needsMedia = fields.some((f) => f.type === "image" || f.type === "images");
+  const needsMedia = fields.some((f) => f.type === "image" || f.type === "images" || f.type === "richtext");
   const media = needsMedia
     ? await q<MediaRow>("SELECT id, filename, alt, original_name FROM media ORDER BY id DESC")
     : [];
@@ -68,7 +70,9 @@ export async function EntityForm({
           <label className="mb-1 block text-sm font-medium">
             {f.label}{f.required && <span className="text-red-600"> *</span>}
           </label>
-          {f.type === "textarea" ? (
+          {f.type === "richtext" ? (
+            <RichTextEditor name={f.name} initialHtml={bodyToHtml(String(values[f.name] ?? ""))} media={media} />
+          ) : f.type === "textarea" ? (
             <textarea name={f.name} defaultValue={String(values[f.name] ?? "")} rows={5} className="a-input" required={f.required} />
           ) : f.type === "select" ? (
             <select name={f.name} defaultValue={String(values[f.name] ?? f.options?.[0] ?? "")} className="a-input">

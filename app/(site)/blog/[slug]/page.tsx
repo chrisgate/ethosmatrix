@@ -7,7 +7,8 @@ import { BlogSidebar } from "@/components/blog/BlogSidebar";
 import { ShareBar } from "@/components/blog/ShareBar";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
-import { getSettings, paragraphs } from "@/lib/content";
+import { getSettings } from "@/lib/content";
+import { bodyToText } from "@/lib/richtext";
 import { getPublishedPosts, longDate, parseCategories, readMinutes } from "@/lib/blog";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!p) return {};
   return {
     title: p.title,
-    description: (p.excerpt || paragraphs(p.body)[0] || "").slice(0, 160) || undefined,
+    description: (p.excerpt || bodyToText(p.body) || "").slice(0, 160) || undefined,
     openGraph: p.filename ? { images: [`/media/${p.filename}`], type: "article", publishedTime: new Date(p.published_at).toISOString() } : { type: "article" },
   };
 }

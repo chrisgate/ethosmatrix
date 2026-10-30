@@ -5,7 +5,7 @@ export type Field = {
   label: string;
   type:
     | "text" | "textarea" | "number" | "select" | "checkbox" | "checkboxes" | "image" | "images" | "slug"
-    | "relation" | "date";
+    | "relation" | "date" | "richtext";
   options?: readonly string[];
   /** For type "relation": which table supplies the choices (value = id). */
   source?: "services";
@@ -122,7 +122,7 @@ export const ENTITIES: Record<string, Entity> = {
       { name: "slug", label: "URL slug", type: "slug", help: "Leave blank to generate from the title." },
       { name: "categories", label: "Categories", type: "text", help: "Comma separated, e.g. Article, Construction" },
       { name: "excerpt", label: "Short summary", type: "textarea", help: "Shown on the blog list and at the top of the article." },
-      { name: "body", label: "Article", type: "textarea", help: "Blank lines start a new paragraph. ## Heading, ### Sub-heading, - bullet, 1. numbered, **bold**, [link text](https://example.com)." },
+      { name: "body", label: "Article", type: "richtext", help: "Use the toolbar for headings, bold, lists, links, images and video. Images can come from the media library or be uploaded here." },
       { name: "cover_id", label: "Cover image", type: "image" },
       { name: "published_at", label: "Publish date", type: "date" },
       { name: "published", label: "Published", type: "checkbox" },

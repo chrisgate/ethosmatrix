@@ -1,4 +1,5 @@
 import { q } from "./db";
+import { bodyToText } from "./richtext";
 
 export type PostRow = {
   id: number; title: string; slug: string; excerpt: string; body: string; categories: string;
@@ -11,7 +12,7 @@ export const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-"
 export const parseCategories = (s: string) =>
   s.split(",").map((x) => x.trim()).filter(Boolean).map((name) => ({ name, slug: slugify(name) }));
 
-export const readMinutes = (body: string) => Math.max(1, Math.round(body.trim().split(/\s+/).length / 200));
+export const readMinutes = (body: string) => Math.max(1, Math.round(bodyToText(body).split(/\s+/).length / 200));
 
 export const longDate = (d: Date | string) =>
   new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });

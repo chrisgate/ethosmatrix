@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { isHtml, sanitizeHtml } from "@/lib/richtext";
 
 /** Inline formatting: **bold** and [label](https://… or /path). Everything else is plain text. */
 function inline(text: string): React.ReactNode[] {
@@ -20,6 +21,8 @@ function inline(text: string): React.ReactNode[] {
  * "- " bullet lists, "1. " numbered lists, **bold** and [links](https://…).
  */
 export function ArticleBody({ text }: { text: string }) {
+  // Articles saved from the rich editor are HTML (sanitized again here); older ones are the plain-text format below.
+  if (isHtml(text)) return <div className="article-prose" dangerouslySetInnerHTML={{ __html: sanitizeHtml(text) }} />;
   const blocks = text.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
   return (
     <div className="font-quicksand text-[17px] leading-[1.95] text-[#444]">

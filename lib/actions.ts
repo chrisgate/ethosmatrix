@@ -11,6 +11,7 @@ import { revalidatePath } from "next/cache";
 import { q } from "./db";
 import { login, logout, requireAdmin } from "./auth";
 import { ENTITIES, SETTINGS_GROUPS, type Field } from "./entities";
+import { sanitizeHtml } from "./richtext";
 
 const UPLOAD_DIR = path.join(process.cwd(), "uploads");
 const ALLOWED: Record<string, string> = {
@@ -69,8 +70,21 @@ async function readField(f: Field, fd: FormData): Promise<string | number | bool
       }
       return ids;
     }
+    case "richtext": return sanitizeHtml(String(fd.get(f.name) ?? ""));
     default: return String(fd.get(f.name) ?? "").trim();
   }
+}
+
+/** Upload from inside the article editor: stores the image in the media library and returns it for insertion. */
+export async function uploadEditorImage(fd: FormData) {
+  await requireAdmin();
+  const [file] = filesOf(fd, "file");
+  const id = await saveFile(file);
+  if (!id) throw new Error("No image received");
+  const [m] = await q<{ id: number; filename: string; alt: string; original_name: string }>(
+    "SELECT id, filename, alt, original_name FROM media WHERE id=$1", [id],
+  );
+  return m;
 }
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "item";
