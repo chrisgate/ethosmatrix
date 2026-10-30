@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { CtaBand } from "@/components/CtaBand";
 import { PageBanner } from "@/components/PageBanner";
 import { CATEGORIES, CATEGORY_IMAGE_KEY, categorySlug, getMedia, getMediaByIds, getSettings } from "@/lib/content";
 
@@ -38,6 +39,7 @@ export default async function ProjectsPage() {
           <Link href="/projects/all" className="btn-gold btn-caps">Browse all projects</Link>
         </div>
       </section>
+      <CtaBand s={s} />
     </>
   );
 }

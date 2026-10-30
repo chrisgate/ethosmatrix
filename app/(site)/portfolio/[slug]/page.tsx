@@ -16,9 +16,10 @@ type Neighbour = { slug: string; title: string };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = await getProject((await params).slug);
   if (!p) return {};
+  const fallback = `${p.title}: ${p.categories[0] ? p.categories[0].toLowerCase() : "a"} project by Ethos Matrix${p.location ? ` in ${p.location}` : ""}.`;
   return {
     title: p.title,
-    description: paragraphs(p.body)[0]?.slice(0, 160) || undefined,
+    description: (paragraphs(p.body)[0] || paragraphs(p.concept_text)[0] || fallback).slice(0, 160),
     openGraph: p.cover_file ? { images: [`/media/${p.cover_file}`] } : undefined,
   };
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GalleryExplorer, type GalleryItem } from "@/components/GalleryExplorer";
+import { CtaBand } from "@/components/CtaBand";
 import { PageBanner } from "@/components/PageBanner";
 import { CATEGORIES, getMedia, getMediaByIds, getSettings } from "@/lib/content";
 import { q } from "@/lib/db";
@@ -59,6 +60,7 @@ export default async function GalleryPage() {
         </p>
         <GalleryExplorer items={items} filters={filters} />
       </section>
+      <CtaBand s={s} />
     </>
   );
 }

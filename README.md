@@ -37,6 +37,10 @@ enquiry. Without them, enquiries are still saved and visible in /admin.
 Uploads are resized (max 2400px wide) and stored as WebP in `uploads/`. `npm run optimize` recompresses
 existing files. `npm run measure` records each photo's dimensions (used by the gallery layout; run automatically by the seed and the optimizer).
 
+## Checks
+`npm run audit` crawls the running site and reports missing titles, descriptions, headings, alt text and broken internal links.
+`npm run icons` rebuilds the favicon, touch icons and social-sharing image from the logo and first hero slide (run it after changing either).
+
 ## Production
 - Set `DATABASE_URL`, `SESSION_SECRET` (long random string), `SITE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
 - Host on a Node server/VPS with a **persistent `uploads/` folder** (or mount a volume). Serverless hosts without a disk need an object-storage upload adapter.

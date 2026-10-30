@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { CtaBand } from "@/components/CtaBand";
 import { PageBanner } from "@/components/PageBanner";
 import { getMedia, getSettings } from "@/lib/content";
 import { q } from "@/lib/db";
@@ -40,6 +41,7 @@ export default async function InsightsPage() {
         </div>
         {!posts.length && <p className="px-5 text-center text-[#666]">No articles yet. Check back soon.</p>}
       </section>
+      <CtaBand s={s} />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CtaBand } from "@/components/CtaBand";
 import { PageBanner } from "@/components/PageBanner";
 import { ProjectCard } from "@/components/ProjectCard";
 import {
@@ -14,11 +15,21 @@ type Props = {
 
 const find = (slug: string) => CATEGORIES.find((c) => categorySlug(c) === slug);
 
+/** One-line summaries (taken from the services text) used in page descriptions. */
+const BLURBS: Record<string, string> = {
+  "Conceptual Design": "Concept creation and feasibility studies that turn ambitious visions into clear designs.",
+  "Architectural Design": "Innovative, functional exterior, facade and interior design tailored to client needs.",
+  "Construction": "Quality, efficiency and durability at every stage, including renovation and remodeling.",
+  "Project Management": "Planning, coordination, budgeting and timely delivery from start to handover.",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).category;
-  if (slug === "all") return { title: "All Projects", description: "Browse every Ethos Matrix project by category and location." };
+  if (slug === "all") {
+    return { title: "All Projects", description: "Browse every Ethos Matrix project across conceptual design, architectural design, construction and project management, filtered by category and location." };
+  }
   const c = find(slug);
-  return c ? { title: c, description: `${c} projects by Ethos Matrix.` } : {};
+  return c ? { title: c, description: `${c} projects by Ethos Matrix, a Nigerian turnkey real estate company. ${BLURBS[c]}` } : {};
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {
@@ -78,6 +89,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         </div>
         {!projects.length && <p className="px-5 text-center text-[#666]">No projects match those filters.</p>}
       </section>
+      <CtaBand s={s} />
     </>
   );
 }

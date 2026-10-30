@@ -59,7 +59,7 @@ export async function scrapeProject(pathname) {
     const seg = text.slice(scope + 1, concept > scope ? concept : stopAt);
     const brk = seg.findIndex((l) => /^(AMENITIES|THE AMENITIES|Client:|Concept\b)/i.test(l));
     const sc = brk < 0 ? seg : seg.slice(0, brk);
-    out.scope = sc.filter((l) => l.length < 140).join("\n");
+    out.scope = sc.filter((l) => l.length < 140 && !/^watch\b/i.test(l)).join("\n");
     const rest = brk < 0 ? [] : seg.slice(brk).filter((l) => l.length > 140);
     if (rest.length) { out.concept_title = "Concept"; out.concept_text = rest.join(PARA); }
   }
@@ -67,6 +67,16 @@ export async function scrapeProject(pathname) {
     out.concept_title = text[concept].replace(/^DESIGN CONCEPT\s*:?\s*/i, "") || "Design concept";
     out.concept_text = text.slice(concept + 1, stopAt).join(PARA);
   }
+
+  // Some paragraphs start with a drop-cap letter in its own element: rejoin "A" + "visionary" / "T" + "he".
+  const joinCap = (s) => {
+    const m = s.match(/^(\S)\n\n(\S+)/);
+    if (!m) return s;
+    const glue = m[1] === "T" && /^he\b/.test(m[2]) ? "" : " ";
+    return m[1] + glue + s.slice(m[0].length - m[2].length);
+  };
+  out.body = joinCap(out.body);
+  out.concept_text = joinCap(out.concept_text);
 
   // Key facts and a video link, when the page has them.
   const fact = (re) => { const l = text.find((x) => re.test(x)); return l ? l.replace(re, "").trim() : ""; };

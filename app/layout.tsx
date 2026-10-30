@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: { default: "Ethos Matrix Limited", template: "%s - Ethos Matrix Limited" },
   description:
     "Ethos Matrix Limited is a Nigerian turnkey real estate company offering architectural design, construction and property development.",
+  // Each page's own address is its canonical URL; share cards fall back to app/opengraph-image.jpg.
+  alternates: { canonical: "./" },
+  openGraph: { type: "website", siteName: "Ethos Matrix Limited", locale: "en_NG" },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

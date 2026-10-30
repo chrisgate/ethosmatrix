@@ -59,6 +59,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd).replace(/</g, "\\u003c") }} />
+      <a href="#main" className="sr-only z-[100] rounded bg-gold px-4 py-2 font-quicksand text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
       {/* top info bar */}
       <div className="bg-topbar text-white">
         <div className="mx-auto flex max-w-[1140px] flex-wrap items-center gap-x-6 gap-y-1 px-5 py-2 font-poppins text-[13px] font-light">
@@ -119,7 +120,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         </div>
       </header>
 
-      <main>{children}</main>
+      <main id="main">{children}</main>
       <SiteEffects />
 
       {/* footer */}

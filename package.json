@@ -10,7 +10,9 @@
     "seed:reset": "node --env-file=.env.local scripts/seed.mjs --force",
     "optimize": "node --env-file=.env.local scripts/optimize-media.mjs",
     "migrate:revamp": "node --env-file=.env.local scripts/migrate-revamp.mjs",
-    "measure": "node --env-file=.env.local scripts/measure-media.mjs"
+    "measure": "node --env-file=.env.local scripts/measure-media.mjs",
+    "icons": "node --env-file=.env.local scripts/make-icons.mjs",
+    "audit": "node --env-file=.env.local scripts/audit.mjs"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

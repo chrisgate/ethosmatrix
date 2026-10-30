@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CeoSection } from "@/components/CeoSection";
+import { CtaBand } from "@/components/CtaBand";
 import { PageBanner } from "@/components/PageBanner";
 import { Slider } from "@/components/Slider";
 import { Testimonials } from "@/components/Testimonials";
@@ -81,6 +82,7 @@ export default async function AboutPage() {
 
       <CeoSection s={s} />
       <Testimonials />
+      <CtaBand s={s} />
     </>
   );
 }

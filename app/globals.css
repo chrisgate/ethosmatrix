@@ -11,6 +11,7 @@
   --color-navy: #1d2f52;
   --color-orange: #e77c11;
   --color-cream: #fdf7f2;
+  --color-ink: #14161a;
   --font-quicksand: var(--f-quicksand), sans-serif;
   --font-cormorant: var(--f-cormorant), serif;
   --font-roboto: var(--f-roboto), sans-serif;
@@ -18,6 +19,7 @@
   --font-playfair: var(--f-playfair), serif;
   --font-montserrat: var(--f-montserrat), sans-serif;
   --font-inter: var(--f-inter), sans-serif;
+  --font-display: var(--f-cormorant), serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -112,3 +114,7 @@ body { background: #fff; color: #666; font-family: var(--f-roboto), sans-serif; 
 .h-accent::after { content: ""; display: block; width: 56px; height: 3px; margin: 14px auto 0; border-radius: 3px; background: var(--color-gold); }
 
 html { scroll-padding-top: 90px; }
+
+/* keyboard focus */
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline-offset: -1px; }
