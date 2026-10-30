@@ -22,8 +22,8 @@ function Rich({ text }: { text: string }) {
 type Client = { id: number; name: string; filename: string };
 
 /**
- * "Construction *Renovation* Remodeling": *word* is outlined. Every character is its own span with a
- * running index so the hero can reveal the title letter by letter (60ms apart), like the original.
+ * "Construction *Renovation* Remodeling": *word* is outlined. Each word is its own span with a running
+ * index, so the hero can bring the title in word by word (soft rise and de-blur) instead of letter by letter.
  */
 function SplitTitle({ text }: { text: string }) {
   let index = 0;
@@ -38,11 +38,7 @@ function SplitTitle({ text }: { text: string }) {
               /^\s+$/.test(w) ? (
                 <span key={wi}> </span>
               ) : (
-                <span key={wi} className="inline-block whitespace-nowrap">
-                  {Array.from(w).map((ch, ci) => (
-                    <span key={ci} className="h-char inline-block" style={{ ["--ci" as string]: index++ }}>{ch}</span>
-                  ))}
-                </span>
+                <span key={wi} className="h-word inline-block" style={{ ["--wi" as string]: index++ }}>{w}</span>
               ),
             )}
           </span>
@@ -75,6 +71,7 @@ export default async function Home() {
       {/* Hero slider */}
       <section className="relative isolate h-[560px] overflow-hidden bg-black text-white sm:h-[602px]">
         <Crossfade
+          dots
           interval={8000}
           overlay="bg-gradient-to-r from-black/35 via-black/5 to-transparent"
           items={slides.filter((x) => x.filename).map((sl) => ({
@@ -88,10 +85,11 @@ export default async function Home() {
                     {sl.label && (
                       <p className="h-sub inline-block bg-orange px-2 font-roboto text-[13px] font-semibold uppercase tracking-[3px] text-white sm:text-[18px]">{sl.label}</p>
                     )}
-                    <div className="mt-3 max-w-[820px] overflow-hidden pb-2">
+                    <div className="mt-3 max-w-[820px]">
                       <h3 className="font-roboto text-[38px] font-bold leading-[1.2] sm:text-[58px]">
                         <SplitTitle text={sl.title} />
                       </h3>
+                      <span className="h-line mt-5 block h-[3px] w-[72px] rounded bg-gold" aria-hidden />
                     </div>
                     {sl.button_text && (
                       <Link href={sl.button_link || "/projects"} className="h-btn mt-6 inline-flex items-center rounded-full border-2 border-gold px-8 py-3 font-poppins text-[13px] font-semibold uppercase tracking-wider text-white transition-colors hover:bg-gold">

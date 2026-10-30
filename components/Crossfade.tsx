@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 type Item = { src: string; alt: string; node?: React.ReactNode };
@@ -11,30 +11,36 @@ const FADE_MS = 1000;
  * Full-bleed crossfading slideshow with a Ken Burns zoom.
  * The active slide (and the outgoing one while it fades) gets `is-active`, which restarts the
  * CSS entrance animations of its caption each time the slide comes back.
+ * With `dots`, clickable progress bars sit at the bottom; the active one fills over `interval`.
  */
 export function Crossfade({
-  items, interval = 6000, overlay = "", children, sizes = "100vw",
+  items, interval = 6000, overlay = "", children, sizes = "100vw", dots = false,
 }: {
   items: Item[];
   interval?: number;
   overlay?: string;
   children?: React.ReactNode;
   sizes?: string;
+  dots?: boolean;
 }) {
   const [i, setI] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
+  const [tick, setTick] = useState(0); // bumped on manual changes so the autoplay timer restarts
   const cur = useRef(0);
+
+  const goTo = useCallback((n: number) => {
+    if (n === cur.current) return;
+    setPrev(cur.current);
+    cur.current = n;
+    setI(n);
+    setTick((t) => t + 1);
+  }, []);
 
   useEffect(() => {
     if (items.length < 2) return;
-    const t = setInterval(() => {
-      const next = (cur.current + 1) % items.length;
-      setPrev(cur.current);
-      cur.current = next;
-      setI(next);
-    }, interval);
+    const t = setInterval(() => goTo((cur.current + 1) % items.length), interval);
     return () => clearInterval(t);
-  }, [items.length, interval]);
+  }, [items.length, interval, tick, goTo]);
 
   // Keep the outgoing slide "active" until its fade-out has finished so its text doesn't vanish early.
   useEffect(() => {
@@ -62,6 +68,32 @@ export function Crossfade({
           </div>
         );
       })}
+
+      {dots && items.length > 1 && (
+        <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-3" role="tablist" aria-label="Slides">
+          {items.map((_, n) => (
+            <button
+              key={n}
+              type="button"
+              role="tab"
+              aria-selected={n === i}
+              aria-label={`Go to slide ${n + 1}`}
+              onClick={() => goTo(n)}
+              className="relative flex h-6 w-12 items-center sm:w-16"
+            >
+              <span className="absolute inset-x-0 h-[3px] rounded bg-white/35 transition group-hover:bg-white/60" />
+              {n === i && (
+                <span
+                  key={`${i}-${tick}`}
+                  className="hero-bar absolute left-0 h-[3px] w-full origin-left rounded bg-white"
+                  style={{ animationDuration: `${interval}ms` }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+
       {children}
     </>
   );
