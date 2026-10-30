@@ -124,3 +124,12 @@ html { scroll-padding-top: 90px; }
 /* keyboard focus */
 :focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
 input:focus-visible, textarea:focus-visible, select:focus-visible { outline-offset: -1px; }
+
+/* home hero: bottom edge curves inward into a white arc, with a thin gold crescent along its rim */
+.hero-curve { --hero-curve: clamp(56px, 7.5vw, 120px); }
+.hero-curve::before, .hero-curve::after {
+  content: ""; position: absolute; left: -8%; right: -8%; bottom: -1px; pointer-events: none;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+.hero-curve::before { height: calc(var(--hero-curve) + 7px); background: var(--color-gold); z-index: 9; }
+.hero-curve::after { height: var(--hero-curve); background: #fff; z-index: 10; }

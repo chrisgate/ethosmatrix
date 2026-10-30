@@ -14,7 +14,7 @@ const FADE_MS = 1000;
  * With `dots`, clickable progress bars sit at the bottom; the active one fills over `interval`.
  */
 export function Crossfade({
-  items, interval = 6000, overlay = "", children, sizes = "100vw", dots = false,
+  items, interval = 6000, overlay = "", children, sizes = "100vw", dots = false, dotsBottom = "bottom-5",
 }: {
   items: Item[];
   interval?: number;
@@ -22,6 +22,8 @@ export function Crossfade({
   children?: React.ReactNode;
   sizes?: string;
   dots?: boolean;
+  /** Tailwind bottom offset for the progress bars (raise it when a curved edge sits at the bottom). */
+  dotsBottom?: string;
 }) {
   const [i, setI] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
@@ -70,7 +72,7 @@ export function Crossfade({
       })}
 
       {dots && items.length > 1 && (
-        <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-3" role="tablist" aria-label="Slides">
+        <div className={`absolute left-1/2 z-20 flex -translate-x-1/2 gap-3 ${dotsBottom}`} role="tablist" aria-label="Slides">
           {items.map((_, n) => (
             <button
               key={n}

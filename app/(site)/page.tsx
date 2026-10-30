@@ -69,9 +69,10 @@ export default async function Home() {
   return (
     <>
       {/* Hero slider */}
-      <section className="relative isolate h-[560px] overflow-hidden bg-black text-white sm:h-[602px]">
+      <section className="hero-curve relative isolate h-[calc(100svh-125px)] min-h-[520px] max-h-[980px] overflow-hidden bg-black text-white sm:h-[calc(100svh-102px)]">
         <Crossfade
           dots
+          dotsBottom="bottom-[calc(var(--hero-curve)+18px)]"
           interval={8000}
           overlay="bg-gradient-to-r from-black/35 via-black/5 to-transparent"
           items={slides.filter((x) => x.filename).map((sl) => ({
@@ -80,7 +81,7 @@ export default async function Home() {
             node: (
               <>
                 <div className="h-mask pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 to-transparent" />
-                <div className="absolute inset-0 flex items-center">
+                <div className="absolute inset-0 flex items-center pb-[var(--hero-curve)]">
                   <div className="mx-auto w-full max-w-[1140px] px-5">
                     {sl.label && (
                       <p className="h-sub inline-block bg-orange px-2 font-roboto text-[13px] font-semibold uppercase tracking-[3px] text-white sm:text-[18px]">{sl.label}</p>
