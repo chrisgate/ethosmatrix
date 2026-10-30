@@ -27,7 +27,7 @@ export default async function MediaPage() {
               </form>
               <form action={deleteMedia}>
                 <input type="hidden" name="id" value={m.id} />
-                <button className="text-xs text-red-700 hover:underline">Delete</button>
+                <button className="-ml-2 rounded px-2 py-2.5 text-sm text-red-700 hover:bg-red-50 hover:underline">Delete</button>
               </form>
             </div>
           </div>

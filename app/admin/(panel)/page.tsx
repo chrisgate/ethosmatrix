@@ -53,7 +53,7 @@ export default async function Dashboard() {
       <section className="mt-10">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-lg font-semibold">Latest enquiries</h2>
-          <Link href="/admin/appointments" className="text-sm font-medium text-gold-dark hover:underline">View all</Link>
+          <Link href="/admin/appointments" className="inline-block px-2 py-2 text-sm font-medium text-gold-dark hover:underline">View all</Link>
         </div>
         <div className="overflow-hidden rounded-lg bg-white shadow-sm">
           {latest.map((a) => (

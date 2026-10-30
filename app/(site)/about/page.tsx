@@ -45,7 +45,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-cream pb-24 pt-16 sm:pt-24 md:pb-[170px]">
+      <section className="bg-cream pb-24 pt-16 sm:pt-24 min-[1100px]:pb-[170px]">
         <div className="mx-auto max-w-[1140px] px-5">
           <h2 className="text-center font-cormorant text-[40px] font-medium text-[#8b5e3c] sm:text-[56px]">Core Values</h2>
           <p className="mx-auto mt-5 max-w-[780px] text-center font-quicksand text-xs font-light leading-relaxed text-[#555]">{s.values_intro}</p>

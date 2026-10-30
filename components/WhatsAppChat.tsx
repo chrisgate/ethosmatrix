@@ -48,6 +48,8 @@ export function WhatsAppChat({ number, title, message, prefill, button, delay }:
   // Open once, by itself, on a visitor's first page view.
   useEffect(() => {
     if (!delay || delay <= 0) return;
+    // On phones a popup covers too much of the screen: only the button and its badge show until tapped.
+    if (window.matchMedia("(max-width: 767px)").matches) return;
     let seen = false;
     try { seen = localStorage.getItem(SEEN_KEY) === "1"; } catch { /* ignore */ }
     if (seen) return;

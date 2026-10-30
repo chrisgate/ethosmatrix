@@ -107,7 +107,7 @@ export default async function Home() {
 
       {/* Intro + carousel */}
       <section className="bg-white py-14 sm:py-[85px]">
-        <div className="mx-auto grid max-w-[1100px] items-center gap-10 px-5 md:grid-cols-[1fr_560px] md:pl-[62px]">
+        <div className="mx-auto grid max-w-[1100px] items-center gap-10 px-5 md:grid-cols-2 md:gap-8 min-[1100px]:grid-cols-[1fr_560px] min-[1100px]:gap-10 min-[1100px]:pl-[62px]">
           <div>
             <h1 className="font-cormorant text-[28px] font-semibold leading-[1.35] text-black sm:text-[32px]">{s.intro_heading}</h1>
             <span className="mt-4 block h-px w-full max-w-[340px] bg-black/60" />
@@ -137,7 +137,7 @@ export default async function Home() {
 
       {/* Services */}
       {services.length > 0 && (
-        <section className="bg-[linear-gradient(180deg,#f6e797_0%,#f1ebd9_55%,#ece8df_100%)] stripes pb-20 pt-16 md:pb-[195px]">
+        <section className="bg-[linear-gradient(180deg,#f6e797_0%,#f1ebd9_55%,#ece8df_100%)] stripes pb-20 pt-16 min-[1100px]:pb-[195px]">
           <div className="mx-auto max-w-[1140px] px-5">
             <h2 className="text-center font-quicksand text-[40px] font-semibold text-gold-title sm:text-[52px]">{s.services_title || "Our Services"}</h2>
             <h3 className="mt-2 text-center font-quicksand text-[18px] font-medium uppercase tracking-[.15em] text-[#624e54] sm:text-2xl">{s.services_subtitle || "Things we do"}</h3>

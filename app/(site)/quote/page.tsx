@@ -50,8 +50,8 @@ export default async function QuotePage({ searchParams }: { searchParams: Promis
             </ol>
 
             <ul className="mt-9 space-y-3 border-t border-black/10 pt-7 font-quicksand text-sm text-[#444]">
-              {s.phone && <li className="flex items-center gap-3"><PhoneIcon className="h-4 w-4 text-gold" /><a href={`tel:${s.phone.replace(/[^\d+]/g, "")}`}>{s.phone}</a></li>}
-              {s.email && <li className="flex items-center gap-3"><MailIcon className="h-4 w-4 text-gold" /><a href={`mailto:${s.email}`}>{s.email}</a></li>}
+              {s.phone && <li className="flex items-center gap-3"><PhoneIcon className="h-4 w-4 text-gold" /><a href={`tel:${s.phone.replace(/[^\d+]/g, "")}`} className="inline-block py-2">{s.phone}</a></li>}
+              {s.email && <li className="flex items-center gap-3"><MailIcon className="h-4 w-4 text-gold" /><a href={`mailto:${s.email}`} className="inline-block py-2">{s.email}</a></li>}
               {s.address && <li className="flex items-start gap-3"><PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-gold" />{s.address}</li>}
               {s.hours && <li className="flex items-center gap-3"><ClockIcon className="h-4 w-4 text-gold" />{s.hours}</li>}
             </ul>

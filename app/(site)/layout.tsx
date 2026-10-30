@@ -63,9 +63,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <a href="#main" className="sr-only z-[100] rounded bg-gold px-4 py-2 font-quicksand text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
       {/* top info bar */}
       <div className="bg-topbar text-white">
-        <div className="mx-auto flex max-w-[1140px] flex-wrap items-center gap-x-6 gap-y-1 px-5 py-2 font-poppins text-[13px] font-light">
-          {s.email && <a href={`mailto:${s.email}`} className="flex items-center gap-2 hover:text-gold"><MailIcon className="h-3.5 w-3.5 text-gold" />{s.email}</a>}
-          {s.phone && <a href={`tel:${tel(s.phone)}`} className="flex items-center gap-2 hover:text-gold"><PhoneIcon className="h-3.5 w-3.5 text-gold" />{s.phone}</a>}
+        <div className="mx-auto flex max-w-[1140px] flex-wrap items-center gap-x-6 px-5 font-poppins text-[13px] font-light">
+          {s.email && <a href={`mailto:${s.email}`} className="flex items-center gap-2 py-2 hover:text-gold"><MailIcon className="h-3.5 w-3.5 text-gold" />{s.email}</a>}
+          {s.phone && <a href={`tel:${tel(s.phone)}`} className="flex items-center gap-2 py-2 hover:text-gold"><PhoneIcon className="h-3.5 w-3.5 text-gold" />{s.phone}</a>}
           {s.hours && <span className="flex items-center gap-2"><InfoIcon className="h-3.5 w-3.5 text-gold" />Opening time: {s.hours.replace(/\s*\/\s*/g, " ")}</span>}
         </div>
       </div>
@@ -111,7 +111,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
                 <div key={item.href}>
                   <Link href={item.href} className="block px-3 py-2.5 hover:text-gold">{item.label}</Link>
                   {item.children?.map(([h, l]) => (
-                    <Link key={h} href={h} className="block px-3 py-2 pl-7 text-[12px] normal-case text-white/70 hover:text-gold">{l}</Link>
+                    <Link key={h} href={h} className="block px-3 py-2.5 pl-7 text-[13px] normal-case text-white/70 hover:text-gold">{l}</Link>
                   ))}
                 </div>
               ))}
@@ -129,26 +129,26 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         <div className="mx-auto grid max-w-[1140px] gap-10 px-5 py-[70px] sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.1fr_1fr]">
           <div>
             <FooterTitle>Contact us</FooterTitle>
-            <ul className="space-y-4 font-poppins text-[13px] font-light leading-relaxed">
+            <ul className="space-y-2 font-poppins text-[13px] font-light leading-relaxed">
               {s.address && <li className="flex gap-3"><PinIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><span>{s.address}</span></li>}
-              {s.phone && <li className="flex gap-3"><PhoneIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><a href={`tel:${tel(s.phone)}`}>{s.phone}</a></li>}
-              {s.email && <li className="flex gap-3"><MailIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><a href={`mailto:${s.email}`}>{s.email}</a></li>}
+              {s.phone && <li className="flex gap-3"><PhoneIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><a href={`tel:${tel(s.phone)}`} className="inline-block py-2">{s.phone}</a></li>}
+              {s.email && <li className="flex gap-3"><MailIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><a href={`mailto:${s.email}`} className="inline-block py-2">{s.email}</a></li>}
               {s.hours && <li className="flex gap-3"><ClockIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><span>{s.hours}</span></li>}
             </ul>
           </div>
           <div>
             <FooterTitle>Quick links</FooterTitle>
-            <ul className="space-y-4 font-poppins text-[13px] font-light">
+            <ul className="space-y-0.5 font-poppins text-[13px] font-light">
               {[["/", "Home"], ["/about", "About us"], ["/projects", "Projects"], ["/contact", "Contact us"]].map(([h, l]) => (
-                <li key={h}><Link href={h} className="flex items-center gap-3 hover:text-gold"><ArrowCircleIcon className="h-3.5 w-3.5 text-white/60" />{l}</Link></li>
+                <li key={h}><Link href={h} className="flex items-center gap-3 py-2 hover:text-gold"><ArrowCircleIcon className="h-3.5 w-3.5 text-white/60" />{l}</Link></li>
               ))}
             </ul>
           </div>
           <div>
             <FooterTitle>Our services</FooterTitle>
-            <ul className="space-y-4 font-poppins text-[13px] font-light">
+            <ul className="space-y-0.5 font-poppins text-[13px] font-light">
               {(services.length ? services.map((x) => [`/services/${x.slug}`, x.title]) : lines(s.footer_services).map((l) => ["/projects", l])).map(([h, l]) => (
-                <li key={h + l}><Link href={h} className="flex items-center gap-3 hover:text-gold"><CheckCircleIcon className="h-3.5 w-3.5 text-white/60" />{l}</Link></li>
+                <li key={h + l}><Link href={h} className="flex items-center gap-3 py-2 hover:text-gold"><CheckCircleIcon className="h-3.5 w-3.5 text-white/60" />{l}</Link></li>
               ))}
             </ul>
           </div>

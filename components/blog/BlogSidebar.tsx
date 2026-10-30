@@ -66,10 +66,10 @@ export function BlogSidebar({
 
       {categories.length > 0 && (
         <Widget title="Categories">
-          <ul className="space-y-2.5 font-quicksand text-[15px]">
+          <ul className="space-y-1 font-quicksand text-[15px]">
             {categories.map((c) => (
               <li key={c.slug} className="flex items-center justify-between">
-                <Link href={`/blog?category=${c.slug}`} className={`transition hover:text-gold-dark ${active.category === c.slug ? "font-bold text-gold-dark" : "text-[#444]"}`}>{c.name}</Link>
+                <Link href={`/blog?category=${c.slug}`} className={`inline-block py-1 transition hover:text-gold-dark ${active.category === c.slug ? "font-bold text-gold-dark" : "text-[#444]"}`}>{c.name}</Link>
                 <span className="rounded-full bg-[#f3efe8] px-2.5 py-0.5 text-[12px] text-[#777]">{c.count}</span>
               </li>
             ))}
@@ -79,10 +79,10 @@ export function BlogSidebar({
 
       {months.length > 0 && (
         <Widget title="Archives">
-          <ul className="space-y-2.5 font-quicksand text-[15px]">
+          <ul className="space-y-1 font-quicksand text-[15px]">
             {months.slice(0, 12).map((m) => (
               <li key={m.key}>
-                <Link href={`/blog?month=${m.key}`} className={`transition hover:text-gold-dark ${active.month === m.key ? "font-bold text-gold-dark" : "text-[#444]"}`}>
+                <Link href={`/blog?month=${m.key}`} className={`inline-block py-1 transition hover:text-gold-dark ${active.month === m.key ? "font-bold text-gold-dark" : "text-[#444]"}`}>
                   {m.label} <span className="text-[#999]">({m.count})</span>
                 </Link>
               </li>
@@ -94,7 +94,7 @@ export function BlogSidebar({
       <div className="rounded-xl bg-[#111] p-6 text-white">
         <div className="font-cormorant text-[26px] font-semibold leading-tight">Planning a project?</div>
         <p className="mt-2 font-quicksand text-sm font-light leading-relaxed text-white/75">Tell us what you have in mind and we will get back to you.</p>
-        <Link href="/quote" className="btn-gold btn-caps mt-5 w-full !px-4 !py-3 !text-[10px]">Schedule appointment</Link>
+        <Link href="/quote" className="btn-gold btn-caps mt-5 w-full !px-4 !py-3 !text-[12px]">Schedule appointment</Link>
       </div>
     </aside>
   );

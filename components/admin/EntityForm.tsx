@@ -14,7 +14,7 @@ function ImagePicker({ f, value, media }: { f: Field; value: unknown; media: Med
   return (
     <div className="space-y-2">
       <details className="rounded border border-stone-300 bg-white p-3" open={selected.size === 0 && media.length < 30}>
-        <summary className="cursor-pointer text-sm font-medium">
+        <summary className="cursor-pointer py-2 text-sm font-medium">
           Choose from library ({media.length}){selected.size ? ` · ${selected.size} selected` : ""}
         </summary>
         <div className="mt-3 flex max-h-72 flex-wrap gap-2 overflow-y-auto">

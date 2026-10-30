@@ -81,7 +81,7 @@ export function Crossfade({
               aria-selected={n === i}
               aria-label={`Go to slide ${n + 1}`}
               onClick={() => goTo(n)}
-              className="relative flex h-6 w-12 items-center sm:w-16"
+              className="relative flex h-9 w-12 items-center sm:w-16"
             >
               <span className="absolute inset-x-0 h-[3px] rounded bg-white/35 transition group-hover:bg-white/60" />
               {n === i && (

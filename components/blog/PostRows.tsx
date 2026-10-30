@@ -32,7 +32,7 @@ export function PostRows({ posts }: { posts: PostCard[] }) {
                 <div className="flex flex-wrap gap-x-2 font-montserrat text-[10px] font-bold uppercase tracking-[.16em] text-gold-dark">
                   {p.categories.map((c, i) => (
                     <span key={c.slug}>
-                      <Link href={`/blog?category=${c.slug}`} className="hover:underline">{c.name}</Link>{i < p.categories.length - 1 && ","}
+                      <Link href={`/blog?category=${c.slug}`} className="inline-block py-2.5 hover:underline">{c.name}</Link>{i < p.categories.length - 1 && ","}
                     </span>
                   ))}
                 </div>
@@ -44,7 +44,7 @@ export function PostRows({ posts }: { posts: PostCard[] }) {
               <time dateTime={p.date} className="mt-4 font-quicksand text-[13px] text-[#999]">
                 {new Date(p.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
               </time>
-              <Link href={`/blog/${p.slug}`} className="mt-5 inline-flex w-fit items-center gap-2 font-montserrat text-[10px] font-bold uppercase tracking-[.18em] text-[#222] transition hover:text-gold-dark">
+              <Link href={`/blog/${p.slug}`} className="mt-3 inline-flex w-fit items-center gap-2 py-2.5 font-montserrat text-[10px] font-bold uppercase tracking-[.18em] text-[#222] transition hover:text-gold-dark">
                 Read article <span aria-hidden>→</span>
               </Link>
             </div>

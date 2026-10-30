@@ -21,7 +21,7 @@ export function PageBanner({
           {crumbs.map((c, i) => (
             <span key={c.label} className="flex items-center gap-2">
               {i > 0 && <span className="text-[10px]">›</span>}
-              {c.href ? <Link href={c.href} className="hover:text-gold">{c.label}</Link> : <span>{c.label}</span>}
+              {c.href ? <Link href={c.href} className="inline-block py-2 hover:text-gold">{c.label}</Link> : <span>{c.label}</span>}
             </span>
           ))}
         </nav>

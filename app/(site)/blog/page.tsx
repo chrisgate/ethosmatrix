@@ -53,7 +53,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
             {s.blog_intro || "Ideas, news and project stories from Ethos Matrix. Learn more about design, construction and property development in Nigeria."}
           </p>
         </div>
-        <a href="#posts" aria-label="Scroll to articles" className="absolute bottom-6 left-1/2 -translate-x-1/2 text-gold motion-safe:animate-bounce">
+        <a href="#posts" aria-label="Scroll to articles" className="absolute bottom-3 left-1/2 -translate-x-1/2 p-3 text-gold motion-safe:animate-bounce">
           <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m6 9 6 6 6-6" /></svg>
         </a>
       </section>
@@ -64,7 +64,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
             {filterLabel && (
               <div className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-lg bg-[#faf7f3] px-5 py-3 font-quicksand text-[15px]">
                 <span className="font-semibold text-[#222]">{filterLabel} <span className="font-normal text-[#777]">· {list.length} {list.length === 1 ? "article" : "articles"}</span></span>
-                <Link href="/blog" className="font-semibold text-gold-dark hover:underline">Clear</Link>
+                <Link href="/blog" className="inline-block px-2 py-2.5 font-semibold text-gold-dark hover:underline">Clear</Link>
               </div>
             )}
             {cards.length > 0 ? (

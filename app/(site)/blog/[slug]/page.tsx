@@ -59,7 +59,7 @@ export default async function PostPage({ params }: Props) {
           {cats.length > 0 && (
             <div className="flex flex-wrap justify-center gap-x-2 font-montserrat text-[10px] font-bold uppercase tracking-[.2em] text-gold">
               {cats.map((c, i) => (
-                <span key={c.slug}><Link href={`/blog?category=${c.slug}`} className="hover:underline">{c.name}</Link>{i < cats.length - 1 && ","}</span>
+                <span key={c.slug}><Link href={`/blog?category=${c.slug}`} className="inline-block py-2.5 hover:underline">{c.name}</Link>{i < cats.length - 1 && ","}</span>
               ))}
             </div>
           )}

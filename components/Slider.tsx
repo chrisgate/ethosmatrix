@@ -117,10 +117,10 @@ export function Slider({
       </div>
       {arrows && real > 1 && (
         <>
-          <button type="button" aria-label="Previous" onClick={() => step(-1)} style={prevStyle} className={`absolute z-10 ${pos} ${arrowClass}`}>
+          <button type="button" aria-label="Previous" onClick={() => step(-1)} style={prevStyle} className={`absolute z-10 p-2.5 ${pos} ${arrowClass}`}>
             <svg viewBox="0 0 24 24" className={corner ? "h-5 w-5" : "h-6 w-6"} fill="none" stroke="currentColor" strokeWidth={corner ? 2.5 : 3}><path d="M15 5l-7 7 7 7" /></svg>
           </button>
-          <button type="button" aria-label="Next" onClick={() => step(1)} style={nextStyle} className={`absolute z-10 ${pos} ${arrowClass}`}>
+          <button type="button" aria-label="Next" onClick={() => step(1)} style={nextStyle} className={`absolute z-10 p-2.5 ${pos} ${arrowClass}`}>
             <svg viewBox="0 0 24 24" className={corner ? "h-5 w-5" : "h-6 w-6"} fill="none" stroke="currentColor" strokeWidth={corner ? 2.5 : 3}><path d="M9 5l7 7-7 7" /></svg>
           </button>
         </>
@@ -131,15 +131,17 @@ export function Slider({
         </div>
       )}
       {dots && real > 1 && (
-        <div className="mt-6 flex justify-center gap-2.5">
+        <div className="mt-3 flex flex-wrap justify-center">
           {children.map((_, i) => (
             <button
               key={i}
               type="button"
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => goTo(i)}
-              className={`h-1.5 w-1.5 rounded-full ${i === active ? dotActive : "bg-gray-300"}`}
-            />
+              className="flex h-9 w-8 items-center justify-center"
+            >
+              <span className={`h-1.5 w-1.5 rounded-full ${i === active ? dotActive : "bg-gray-300"}`} />
+            </button>
           ))}
         </div>
       )}

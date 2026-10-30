@@ -29,7 +29,7 @@ export default async function EntityList({ params }: { params: Promise<{ entity:
                   <td key={c} className="max-w-xs truncate px-4 py-3">{typeof r[c] === "boolean" ? (r[c] ? "Yes" : "No") : Array.isArray(r[c]) ? (r[c] as string[]).join(", ") : String(r[c] ?? "")}</td>
                 ))}
                 <td className="px-4 py-3 text-right">
-                  <Link href={`/admin/${entity}/${r.id}`} className="font-medium text-gold-dark hover:underline">Edit</Link>
+                  <Link href={`/admin/${entity}/${r.id}`} className="inline-block rounded px-3 py-2 font-medium text-gold-dark hover:bg-stone-100 hover:underline">Edit</Link>
                 </td>
               </tr>
             ))}
