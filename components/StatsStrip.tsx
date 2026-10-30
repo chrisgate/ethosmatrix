@@ -36,7 +36,7 @@ function CountUp({ to, suffix }: { to: number; suffix: string }) {
 export function StatsStrip({ stats }: { stats: Stat[] }) {
   if (!stats.length) return null;
   return (
-    <section className="bg-white pb-6 pt-2 sm:pb-12">
+    <section className="bg-white pb-10 pt-0 sm:pb-14">
       <div
         className="mx-auto flex max-w-[1000px] flex-wrap justify-center gap-x-10 gap-y-10 px-5 text-center sm:gap-x-16"
       >
