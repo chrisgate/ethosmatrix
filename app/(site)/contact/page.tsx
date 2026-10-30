@@ -27,8 +27,9 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <section className="bg-white pb-16 pt-6">
         <form id="appointment" action={submitAppointment} className="mx-auto max-w-[780px] scroll-mt-24 space-y-3 px-5">
           {sent && <p className="bg-green-50 p-3 text-center font-quicksand text-sm text-green-800">Thank you. We have your message and will be in touch shortly.</p>}
-          {error && <p className="bg-red-50 p-3 text-center font-quicksand text-sm text-red-800">Please enter your name and a valid email address.</p>}
+          {error === "rate" ? <p className="bg-red-50 p-3 text-center font-quicksand text-sm text-red-800">Too many requests. Please try again in a few minutes.</p> : error && <p className="bg-red-50 p-3 text-center font-quicksand text-sm text-red-800">Please enter your name and a valid email address.</p>}
           <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
+          <input type="hidden" name="t" value={Date.now()} />
           <div className="grid gap-3 sm:grid-cols-2">
             <input name="name" required placeholder="First Name" className={field} />
             <input name="email" type="email" required placeholder="Email Address" className={field} />

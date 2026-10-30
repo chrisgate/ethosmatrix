@@ -9,6 +9,7 @@ import path from "node:path";
 import pg from "pg";
 import { scrapeProject } from "./scrape.mjs";
 import { optimizeAll } from "./optimize-media.mjs";
+import { applyRevampContent } from "./revamp-content.mjs";
 
 const FORCE = process.argv.includes("--force");
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
@@ -36,7 +37,7 @@ if ((await q("SELECT 1 FROM settings LIMIT 1")).length) {
     await pool.end();
     process.exit(0);
   }
-  await q("TRUNCATE settings, media, slides, services, projects, clients, gallery, testimonials RESTART IDENTITY CASCADE");
+  await q("TRUNCATE settings, media, slides, services, projects, clients, gallery, testimonials, stats, steps, faqs, posts RESTART IDENTITY CASCADE");
   for (const f of await readdir(UPLOADS)) if (f !== ".gitkeep") await unlink(path.join(UPLOADS, f));
 }
 await mkdir(UPLOADS, { recursive: true });
@@ -239,6 +240,7 @@ for (const [i, [title, cats, coverRel, page]] of projects.entries()) {
   console.log(`project ${i + 1}/${projects.length}: ${title} (${gal.length} photos)`);
 }
 
+await applyRevampContent(q);
 await optimizeAll(pool);
 console.log("Seed complete. media files:", cache.size);
 await pool.end();

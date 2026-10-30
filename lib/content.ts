@@ -58,19 +58,48 @@ export type Project = {
   body: string; scope: string; concept_title: string; concept_text: string; location: string; year: string;
   cover_id: number | null; gallery_ids: number[]; featured: boolean; published: boolean;
   cover_file: string | null; cover_alt: string | null;
+  client: string; size: string; status: string; video_url: string; before_id: number | null; after_id: number | null;
 };
 
 const PROJECT_SELECT = `SELECT p.*, m.filename AS cover_file, m.alt AS cover_alt FROM projects p
   LEFT JOIN media m ON m.id = p.cover_id`;
 
-export async function getProjects(opts: { category?: string; featured?: boolean; limit?: number; exclude?: number } = {}) {
+export type ProjectFilter = { category?: string; featured?: boolean; limit?: number; exclude?: number; location?: string; year?: string; status?: string };
+
+export async function getProjects(opts: ProjectFilter = {}) {
   const where = ["p.published"];
   const params: unknown[] = [];
-  if (opts.category) { params.push(opts.category); where.push(`$${params.length} = ANY(p.categories)`); }
+  const add = (sql: string, v: unknown) => { params.push(v); where.push(sql.replace("?", `$${params.length}`)); };
+  if (opts.category) add("? = ANY(p.categories)", opts.category);
   if (opts.featured) where.push("p.featured");
-  if (opts.exclude) { params.push(opts.exclude); where.push(`p.id <> $${params.length}`); }
+  if (opts.exclude) add("p.id <> ?", opts.exclude);
+  if (opts.location) add("p.location ILIKE ?", `%${opts.location}%`);
+  if (opts.year) add("p.year = ?", opts.year);
+  if (opts.status) add("p.status = ?", opts.status);
   const limit = opts.limit ? `LIMIT ${Number(opts.limit)}` : "";
   return q<Project>(`${PROJECT_SELECT} WHERE ${where.join(" AND ")} ORDER BY p.sort, p.id ${limit}`, params);
+}
+
+/** Distinct values for the project filter dropdowns. */
+export async function getProjectFacets(category?: string) {
+  const rows = await q<{ location: string; year: string; status: string }>(
+    `SELECT location, year, status FROM projects WHERE published ${category ? "AND $1 = ANY(categories)" : ""}`,
+    category ? [category] : [],
+  );
+  const uniq = (xs: string[]) => [...new Set(xs.map((x) => x.trim()).filter(Boolean))];
+  // Locations are often "Area, City": offer the last part (the city) as the filter.
+  const cities = uniq(rows.map((r) => r.location.split(",").pop() ?? "")).sort();
+  return { locations: cities, years: uniq(rows.map((r) => r.year)).sort().reverse(), statuses: uniq(rows.map((r) => r.status)) };
+}
+
+/** Turns a YouTube or Vimeo link into an embeddable URL (null for anything else). */
+export function videoEmbed(url?: string | null): string | null {
+  if (!url) return null;
+  const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{6,})/i);
+  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`;
+  const vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/i);
+  if (vm) return `https://player.vimeo.com/video/${vm[1]}`;
+  return null;
 }
 
 export async function getProject(slug: string) {

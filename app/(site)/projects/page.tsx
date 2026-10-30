@@ -34,6 +34,9 @@ export default async function ProjectsPage() {
             );
           })}
         </div>
+        <div className="mt-10 text-center">
+          <Link href="/projects/all" className="btn-gold btn-caps">Browse all projects</Link>
+        </div>
       </section>
     </>
   );

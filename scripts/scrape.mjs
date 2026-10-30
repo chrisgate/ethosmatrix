@@ -68,6 +68,16 @@ export async function scrapeProject(pathname) {
     out.concept_text = text.slice(concept + 1, stopAt).join(PARA);
   }
 
+  // Key facts and a video link, when the page has them.
+  const fact = (re) => { const l = text.find((x) => re.test(x)); return l ? l.replace(re, "").trim() : ""; };
+  const title = (s) => s.toLowerCase().replace(/(^|[\s/-])([a-z])/g, (_, a, b) => a + b.toUpperCase());
+  out.client = fact(/^Client:\s*/i);
+  out.location = title(fact(/^Location:\s*/i));
+  out.year = fact(/^Date:\s*/i);
+  out.size = fact(/^(Size|Area|Floor area)\s*:\s*/i);
+  const vid = main.match(/https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/|vimeo\.com\/)[^"' <>]+/i);
+  out.video = vid ? decode(vid[0]) : "";
+
   // Full-size images linked from the page (lightbox/gallery links).
   const hrefs = [
     ...main.matchAll(/href=["'](https:\/\/ethosmatrix\.com\/wp-content\/uploads\/[^"']+\.(?:jpe?g|png|webp))["']/gi),

@@ -8,15 +8,10 @@ import {
 
 export const dynamic = "force-dynamic";
 
-const NAV = [
-  ["/", "Home"],
-  ["/about", "About us"],
-  ["/projects", "Projects"],
-  ["/gallery", "Gallery"],
-  ["/contact", "Contact"],
-] as const;
+type NavItem = { href: string; label: string; children?: [string, string][] };
 
-const PROJECT_LINKS = [
+const PROJECT_LINKS: [string, string][] = [
+  ["/projects/all", "All projects"],
   ["/projects/conceptual-design", "Conceptual Design"],
   ["/projects/architectural-design", "Architectural Design"],
   ["/projects/construction", "Construction"],
@@ -30,12 +25,39 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const logo = await getMedia(s.logo_id);
   const name = s.site_name || "Ethos Matrix";
   const wa = (s.whatsapp || "").replace(/\D/g, "");
+  const services = await q<{ slug: string; title: string }>(
+    "SELECT slug, title FROM services WHERE slug IS NOT NULL AND slug <> '' ORDER BY sort, id",
+  );
+  const [{ n: postCount }] = await q<{ n: number }>("SELECT count(*)::int AS n FROM posts WHERE published");
+  const nav: NavItem[] = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About us" },
+    { href: "/services", label: "Services", children: services.map((x) => [`/services/${x.slug}`, x.title] as [string, string]) },
+    { href: "/projects", label: "Projects", children: PROJECT_LINKS },
+    ...(postCount > 0 ? [{ href: "/insights", label: "Insights" }] : []),
+    { href: "/gallery", label: "Gallery" },
+    { href: "/contact", label: "Contact" },
+  ];
+  const sameAs = (s.same_as || "").split("\n").map((x) => x.trim()).filter(Boolean);
+  const orgLd = {
+    "@context": "https://schema.org",
+    "@type": "GeneralContractor",
+    name,
+    url: process.env.SITE_URL ?? "http://localhost:3000",
+    description: s.seo_description || undefined,
+    telephone: s.phone || undefined,
+    email: s.email || undefined,
+    address: s.address ? { "@type": "PostalAddress", streetAddress: s.address, addressCountry: "NG" } : undefined,
+    openingHours: s.hours || undefined,
+    sameAs: sameAs.length ? sameAs : undefined,
+  };
   const footerGallery = await q<{ filename: string; alt: string; original_name: string }>(
     "SELECT DISTINCT m.filename, m.alt, m.original_name FROM gallery g JOIN media m ON m.id = g.image_id ORDER BY m.original_name LIMIT 6",
   );
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd).replace(/</g, "\\u003c") }} />
       {/* top info bar */}
       <div className="bg-topbar text-white">
         <div className="mx-auto flex max-w-[1140px] flex-wrap items-center gap-x-6 gap-y-1 px-5 py-2 font-poppins text-[13px] font-light">
@@ -56,24 +78,24 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             )}
           </Link>
 
-          <nav className="hidden items-center gap-9 font-poppins text-[13px] font-normal uppercase tracking-wide lg:flex">
-            {NAV.map(([href, label]) =>
-              href === "/projects" ? (
-                <div key={href} className="group relative">
-                  <Link href={href} className="flex items-center gap-1 py-6 hover:text-gold">{label}<CaretDown /></Link>
-                  <div className="invisible absolute left-0 top-full min-w-[220px] bg-black py-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100">
-                    {PROJECT_LINKS.map(([h, l]) => (
+          <nav className="hidden items-center gap-8 font-poppins text-[13px] font-normal uppercase tracking-wide lg:flex">
+            {nav.map((item) =>
+              item.children?.length ? (
+                <div key={item.href} className="group relative">
+                  <Link href={item.href} className="flex items-center gap-1 py-6 hover:text-gold">{item.label}<CaretDown /></Link>
+                  <div className="invisible absolute left-0 top-full min-w-[230px] bg-black py-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100">
+                    {item.children.map(([h, l]) => (
                       <Link key={h} href={h} className="block px-5 py-2.5 normal-case hover:text-gold">{l}</Link>
                     ))}
                   </div>
                 </div>
               ) : (
-                <Link key={href} href={href} className="hover:text-gold">{label}</Link>
+                <Link key={item.href} href={item.href} className="hover:text-gold">{item.label}</Link>
               ),
             )}
           </nav>
 
-          <Link href="/contact" className="hidden items-center gap-2 rounded-full border border-white px-5 py-2.5 font-poppins text-[11px] font-semibold uppercase tracking-wide transition hover:border-gold hover:text-gold lg:inline-flex">
+          <Link href="/quote" className="hidden items-center gap-2 rounded-full border border-white px-5 py-2.5 font-poppins text-[11px] font-semibold uppercase tracking-wide transition hover:border-gold hover:text-gold lg:inline-flex">
             Schedule appointment <DoubleChevron />
           </Link>
 
@@ -81,14 +103,16 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             <summary className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded border border-white/30" aria-label="Menu">
               <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
             </summary>
-            <div className="absolute right-0 top-12 w-64 bg-black p-3 font-poppins text-[13px] uppercase shadow-xl">
-              {NAV.map(([href, label]) => (
-                <Link key={href} href={href} className="block px-3 py-2.5 hover:text-gold">{label}</Link>
+            <div className="absolute right-0 top-12 max-h-[80vh] w-64 overflow-y-auto bg-black p-3 font-poppins text-[13px] uppercase shadow-xl">
+              {nav.map((item) => (
+                <div key={item.href}>
+                  <Link href={item.href} className="block px-3 py-2.5 hover:text-gold">{item.label}</Link>
+                  {item.children?.map(([h, l]) => (
+                    <Link key={h} href={h} className="block px-3 py-2 pl-7 text-[12px] normal-case text-white/70 hover:text-gold">{l}</Link>
+                  ))}
+                </div>
               ))}
-              {PROJECT_LINKS.map(([h, l]) => (
-                <Link key={h} href={h} className="block px-3 py-2 pl-7 text-[12px] normal-case text-white/70 hover:text-gold">{l}</Link>
-              ))}
-              <Link href="/contact" className="mt-2 block rounded-full border border-white px-4 py-2.5 text-center text-[11px] font-semibold">Schedule appointment</Link>
+              <Link href="/quote" className="mt-2 block rounded-full border border-white px-4 py-2.5 text-center text-[11px] font-semibold">Schedule appointment</Link>
             </div>
           </details>
         </div>
@@ -119,8 +143,8 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           <div>
             <FooterTitle>Our services</FooterTitle>
             <ul className="space-y-4 font-poppins text-[13px] font-light">
-              {lines(s.footer_services).map((l) => (
-                <li key={l}><Link href="/projects" className="flex items-center gap-3 hover:text-gold"><CheckCircleIcon className="h-3.5 w-3.5 text-white/60" />{l}</Link></li>
+              {(services.length ? services.map((x) => [`/services/${x.slug}`, x.title]) : lines(s.footer_services).map((l) => ["/projects", l])).map(([h, l]) => (
+                <li key={h + l}><Link href={h} className="flex items-center gap-3 hover:text-gold"><CheckCircleIcon className="h-3.5 w-3.5 text-white/60" />{l}</Link></li>
               ))}
             </ul>
           </div>

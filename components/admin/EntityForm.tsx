@@ -53,6 +53,10 @@ export async function EntityForm({
   action: (fd: FormData) => Promise<void>;
   submitLabel?: string;
 }) {
+  const relations: Record<string, { id: number; title: string }[]> = {};
+  for (const f of fields) {
+    if (f.type === "relation" && f.source) relations[f.source] ??= await q<{ id: number; title: string }>("SELECT id, title FROM " + f.source + " ORDER BY sort, id");
+  }
   const needsMedia = fields.some((f) => f.type === "image" || f.type === "images");
   const media = needsMedia
     ? await q<MediaRow>("SELECT id, filename, alt, original_name FROM media ORDER BY id DESC")
@@ -68,8 +72,15 @@ export async function EntityForm({
             <textarea name={f.name} defaultValue={String(values[f.name] ?? "")} rows={5} className="a-input" required={f.required} />
           ) : f.type === "select" ? (
             <select name={f.name} defaultValue={String(values[f.name] ?? f.options?.[0] ?? "")} className="a-input">
-              {f.options?.map((o) => <option key={o}>{o}</option>)}
+              {f.options?.map((o) => <option key={o} value={o}>{o || "None"}</option>)}
             </select>
+          ) : f.type === "relation" ? (
+            <select name={f.name} defaultValue={String(values[f.name] ?? "")} className="a-input">
+              <option value="">General (not tied to a page)</option>
+              {(relations[f.source ?? ""] ?? []).map((r) => <option key={r.id} value={r.id}>{r.title}</option>)}
+            </select>
+          ) : f.type === "date" ? (
+            <input type="date" name={f.name} defaultValue={values[f.name] ? new Date(values[f.name] as string).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10)} className="a-input" />
           ) : f.type === "checkboxes" ? (
             <div className="flex flex-wrap gap-x-5 gap-y-2">
               {f.options?.map((o) => (

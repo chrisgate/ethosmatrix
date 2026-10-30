@@ -7,10 +7,16 @@ const NAV = [
   ["/admin/settings", "Site content"],
   ["/admin/projects", "Projects"],
   ["/admin/services", "Services"],
+  ["/admin/stats", "Stats counters"],
+  ["/admin/steps", "How we work"],
+  ["/admin/faqs", "FAQs"],
+  ["/admin/posts", "Insights (blog)"],
+  ["/admin/slides", "Hero slides"],
+  ["/admin/clients", "Client logos"],
   ["/admin/gallery", "Gallery"],
   ["/admin/testimonials", "Testimonials"],
   ["/admin/media", "Media library"],
-  ["/admin/appointments", "Appointments"],
+  ["/admin/appointments", "Enquiries"],
 ];
 
 export const metadata = { title: "Admin", robots: { index: false } };
