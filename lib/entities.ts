@@ -172,6 +172,13 @@ export const SETTINGS_GROUPS: { title: string; fields: Field[] }[] = [
     { name: "seo_description", label: "Default SEO description", type: "textarea" },
     { name: "same_as", label: "Social profile links (one per line)", type: "textarea", help: "Used in search-engine data, e.g. your Instagram or LinkedIn page." },
   ]},
+  { title: "WhatsApp chat", fields: [
+    { name: "wa_title", label: "Chat card title", type: "text", help: "The number comes from \"WhatsApp number\" under Brand & contact." },
+    { name: "wa_message", label: "Greeting message", type: "textarea", help: "Shown in the chat bubble. Blank lines create new paragraphs." },
+    { name: "wa_prefill", label: "First message the visitor sends", type: "text", help: "Prefilled in WhatsApp when they tap Open chat. The page they were on is added automatically." },
+    { name: "wa_button", label: "Button text", type: "text" },
+    { name: "wa_delay", label: "Open by itself after (seconds)", type: "number", help: "Opens once on a visitor's first page view. Use 0 to turn this off." },
+  ]},
   { title: "Home: intro & carousel", fields: [
     { name: "intro_heading", label: "Intro heading", type: "textarea" },
     { name: "about_text", label: "About snippet", type: "textarea" },

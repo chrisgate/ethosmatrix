@@ -29,6 +29,9 @@ Home, About, Services (+ one page per service), Projects (by category, or all wi
 Insights (shown in the menu once there is a published article), Events gallery, Contact, and
 Schedule an Appointment (`/quote`, the project brief form).
 
+## WhatsApp chat
+The green button (bottom right) opens a chat card with a greeting and an **Open chat** button that starts a WhatsApp conversation with a prefilled message, including the page the visitor was on. It opens by itself once, a few seconds into a visitor's first page view. The number, texts and delay are under **Site content > WhatsApp chat** (the number is "WhatsApp number" under Brand & contact).
+
 ## Email notifications (optional)
 Set `SMTP_URL`, `MAIL_TO` and optionally `MAIL_FROM` in `.env.local` and the team is emailed for every
 enquiry. Without them, enquiries are still saved and visible in /admin.

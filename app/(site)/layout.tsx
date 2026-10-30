@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getMedia, getSettings, lines } from "@/lib/content";
 import { q } from "@/lib/db";
 import { SiteEffects } from "@/components/SiteEffects";
+import { WhatsAppChat } from "@/components/WhatsAppChat";
 import {
   ArrowCircleIcon, CaretDown, CheckCircleIcon, ClockIcon, DoubleChevron, InfoIcon, MailIcon, PhoneIcon, PinIcon,
 } from "@/components/Icons";
@@ -171,17 +172,16 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       </footer>
 
       {wa && (
-        <a
-          href={`https://wa.me/${wa}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp"
-          className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:scale-105"
-        >
-          <svg viewBox="0 0 24 24" className="h-8 w-8 fill-current" aria-hidden>
-            <path d="M12 2a10 10 0 0 0-8.600 15.100L2 22l5-1.400A10 10 0 1 0 12 2Zm0 1.800a8.200 8.200 0 1 1-4.200 15.200l-.3-.2-2.900.8.8-2.800-.2-.3A8.200 8.200 0 0 1 12 3.800Zm-3 4.300c-.2 0-.5.100-.7.400-.3.300-1 1-1 2.400s1 2.800 1.200 3c.1.200 2 3.100 4.900 4.300 2.400 1 2.900.8 3.400.7.500-.1 1.700-.7 1.900-1.400.2-.7.200-1.200.2-1.400-.1-.1-.3-.2-.6-.4l-1.800-.9c-.2-.1-.4-.1-.6.100l-.8 1c-.2.200-.3.200-.6.100-1-.5-2-1.100-2.900-2.400-.2-.4 0-.4.200-.6l.4-.5.2-.4c.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4Z" />
-          </svg>
-        </a>
+        <WhatsAppChat
+          number={wa}
+          title={s.wa_title || "Hello there"}
+          message={s.wa_message || `Welcome to ${name}. We are a Nigerian turnkey real estate company offering design, planning, construction and finishing.
+
+Please tell us your name and how we can help you today.`}
+          prefill={s.wa_prefill || `Hello ${name}, I would like to make an enquiry.`}
+          button={s.wa_button || "Open chat"}
+          delay={s.wa_delay === undefined || s.wa_delay === "" ? 8 : Number(s.wa_delay) || 0}
+        />
       )}
     </>
   );

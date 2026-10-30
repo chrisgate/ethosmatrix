@@ -55,6 +55,13 @@ const SETTINGS = {
   quote_timelines: "As soon as possible\nWithin 3 months\n3 to 6 months\n6 to 12 months\nJust exploring",
   quote_budgets: "",
   same_as: "",
+  wa_title: "Hello there",
+  wa_message: "Welcome to Ethos Matrix Limited. We are a Nigerian turnkey real estate company offering design, planning, construction and finishing.
+
+Please tell us your name and how we can help you today.",
+  wa_prefill: "Hello Ethos Matrix, I would like to make an enquiry.",
+  wa_button: "Open chat",
+  wa_delay: "8",
 };
 
 // Projects worth highlighting on the home page (one or two per service line).
