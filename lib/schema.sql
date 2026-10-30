@@ -1,0 +1,91 @@
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS settings (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL DEFAULT ''
+);
+CREATE TABLE IF NOT EXISTS media (
+  id SERIAL PRIMARY KEY,
+  filename TEXT UNIQUE NOT NULL,
+  original_name TEXT NOT NULL,
+  mime TEXT NOT NULL,
+  size INT NOT NULL,
+  alt TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS slides (
+  id SERIAL PRIMARY KEY,
+  label TEXT NOT NULL DEFAULT '',
+  title TEXT NOT NULL DEFAULT '',
+  button_text TEXT NOT NULL DEFAULT 'View more',
+  button_link TEXT NOT NULL DEFAULT '/projects',
+  image_id INT REFERENCES media(id) ON DELETE SET NULL,
+  sort INT NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS services (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  subtitle TEXT NOT NULL DEFAULT '',
+  description TEXT NOT NULL DEFAULT '',
+  image_id INT REFERENCES media(id) ON DELETE SET NULL,
+  link TEXT NOT NULL DEFAULT '/projects',
+  sort INT NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS projects (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  categories TEXT[] NOT NULL DEFAULT '{}',
+  subtitle TEXT NOT NULL DEFAULT '',
+  summary TEXT NOT NULL DEFAULT '',
+  body TEXT NOT NULL DEFAULT '',
+  scope TEXT NOT NULL DEFAULT '',
+  concept_title TEXT NOT NULL DEFAULT '',
+  concept_text TEXT NOT NULL DEFAULT '',
+  location TEXT NOT NULL DEFAULT '',
+  year TEXT NOT NULL DEFAULT '',
+  cover_id INT REFERENCES media(id) ON DELETE SET NULL,
+  gallery_ids INT[] NOT NULL DEFAULT '{}',
+  featured BOOLEAN NOT NULL DEFAULT false,
+  published BOOLEAN NOT NULL DEFAULT true,
+  sort INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS clients (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  image_id INT NOT NULL REFERENCES media(id) ON DELETE CASCADE,
+  sort INT NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS gallery (
+  id SERIAL PRIMARY KEY,
+  image_id INT NOT NULL REFERENCES media(id) ON DELETE CASCADE,
+  caption TEXT NOT NULL DEFAULT '',
+  sort INT NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS testimonials (
+  id SERIAL PRIMARY KEY,
+  quote TEXT NOT NULL,
+  name TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT '',
+  company TEXT NOT NULL DEFAULT '',
+  image_id INT REFERENCES media(id) ON DELETE SET NULL,
+  sort INT NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS appointments (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL DEFAULT '',
+  service TEXT NOT NULL DEFAULT '',
+  preferred_date TEXT NOT NULL DEFAULT '',
+  message TEXT NOT NULL DEFAULT '',
+  status TEXT NOT NULL DEFAULT 'new',
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+ALTER TABLE services ADD COLUMN IF NOT EXISTS back_image_id INT REFERENCES media(id) ON DELETE SET NULL;
+ALTER TABLE gallery ADD COLUMN IF NOT EXISTS section TEXT NOT NULL DEFAULT 'Full-width slideshow';
