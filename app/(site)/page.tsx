@@ -115,7 +115,7 @@ export default async function Home() {
             <p className="mt-7 font-raleway text-[8px] font-normal uppercase tracking-[4.7px] text-black">Our story</p>
             <h2 className="mt-1 font-quicksand text-[32px] font-normal text-black">About us</h2>
             <span className="rule mt-3 text-black" />
-            <p className="mt-5 max-w-[470px] font-quicksand text-sm font-light leading-[1.9] tracking-wide text-[#555]">{s.about_text}</p>
+            <p className="mt-5 max-w-[476px] font-quicksand text-[15px] font-light leading-[1.8] tracking-[1px] text-black">{s.about_text}</p>
             <Link href="/about" className="btn-gold mt-6">Read More</Link>
           </div>
           {carousel.length > 0 && (
