@@ -94,7 +94,7 @@ export default async function Home() {
                       <span className="h-line mt-5 block h-[3px] w-[72px] rounded bg-gold" aria-hidden />
                     </div>
                     {sl.button_text && (
-                      <Link href={sl.button_link || "/projects"} className="h-btn mt-6 inline-flex items-center rounded-full border-2 border-gold px-8 py-3 font-poppins text-[13px] font-semibold uppercase tracking-wider text-white transition-colors hover:bg-gold">
+                      <Link href={sl.button_link || "/projects"} className="h-btn mt-6 inline-flex items-center rounded-full border-2 border-gold px-8 py-3 font-roboto text-[14px] font-medium uppercase tracking-[1px] text-white transition-colors hover:bg-gold">
                         {sl.button_text}
                       </Link>
                     )}
@@ -112,7 +112,7 @@ export default async function Home() {
           <div>
             <h1 className="font-cormorant text-[28px] font-semibold leading-[1.35] text-black sm:text-[32px]">{s.intro_heading}</h1>
             <span className="mt-4 block h-px w-full max-w-[340px] bg-black/60" />
-            <p className="mt-7 font-quicksand text-[9px] font-medium uppercase tracking-[.35em] text-[#666]">Our story</p>
+            <p className="mt-7 font-raleway text-[8px] font-normal uppercase tracking-[4.7px] text-black">Our story</p>
             <h2 className="mt-1 font-quicksand text-[32px] font-normal text-black">About us</h2>
             <span className="rule mt-3 text-black" />
             <p className="mt-5 max-w-[470px] font-quicksand text-sm font-light leading-[1.9] tracking-wide text-[#555]">{s.about_text}</p>
@@ -166,7 +166,7 @@ export default async function Home() {
               ))}
             </div>
             <div className="mt-14 text-center">
-              <Link href="/projects" className="btn-gold btn-caps">View all our work</Link>
+              <Link href="/projects" className="btn-gold btn-caps !font-heebo !text-[14px] !font-medium !tracking-[1.6px]">View all our work</Link>
             </div>
           </div>
         </section>
@@ -241,7 +241,7 @@ export default async function Home() {
             items={showcase.map((m) => ({ src: `/media/${m.filename}`, alt: m.alt }))}
           />
           <div className="absolute inset-0 z-10 flex items-center justify-center">
-            <Link href="/projects" className="btn-gold !px-7 !py-3.5 text-[14px]">
+            <Link href="/projects" className="btn-gold !px-7 !py-3.5 !font-mulish !text-[15px] !font-normal">
               View Projects <InfoIcon className="h-3.5 w-3.5" />
             </Link>
           </div>

@@ -19,6 +19,11 @@
   --font-playfair: var(--f-playfair), serif;
   --font-montserrat: var(--f-montserrat), sans-serif;
   --font-inter: var(--f-inter), sans-serif;
+  --font-karla: var(--f-karla), sans-serif;
+  --font-lora: var(--f-lora), serif;
+  --font-raleway: var(--f-raleway), sans-serif;
+  --font-heebo: var(--f-heebo), sans-serif;
+  --font-mulish: var(--f-mulish), sans-serif;
   --font-display: var(--f-cormorant), serif;
 }
 

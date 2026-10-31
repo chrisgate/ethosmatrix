@@ -20,7 +20,7 @@ export async function Testimonials() {
             <div key={t.id} className="px-3 pb-6">
               <div className="relative bg-white px-8 py-7 shadow-[0_6px_20px_-12px_rgba(0,0,0,.25)]">
                 <span aria-hidden className="pointer-events-none absolute right-5 top-1 select-none font-playfair text-[64px] leading-none text-gold/25">”</span>
-                <p className="font-playfair text-[13px] italic leading-relaxed text-[#6d6d85]">{t.quote}</p>
+                <p className="font-inter text-[14px] italic leading-[1.8] text-[#808291]">{t.quote}</p>
                 <span className="absolute -bottom-2 left-12 h-4 w-4 rotate-45 bg-white" />
               </div>
               <div className="mt-6 flex items-center gap-4 pl-8">
@@ -28,8 +28,8 @@ export async function Testimonials() {
                   {t.filename && <Image src={`/media/${t.filename}`} alt={t.company || t.name} fill sizes="50px" className="object-cover" />}
                 </div>
                 <div>
-                  <div className="font-inter text-[12px] font-semibold text-[#222]">{t.name}</div>
-                  <div className="font-playfair text-[12px] italic text-[#7a7a90]">{[t.role, t.company].filter(Boolean).join(" - ")}</div>
+                  <div className="font-karla text-[15.4px] font-semibold tracking-[-0.8px] text-black">{t.name}</div>
+                  <div className="font-lora text-[14px] italic text-[#808291]">{[t.role, t.company].filter(Boolean).join(" - ")}</div>
                 </div>
               </div>
             </div>

@@ -81,7 +81,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             )}
           </Link>
 
-          <nav className="hidden items-center gap-8 font-poppins text-[13px] font-normal uppercase tracking-wide lg:flex">
+          <nav className="hidden items-center gap-8 font-quicksand text-[14px] font-normal uppercase lg:flex">
             {nav.map((item) =>
               item.children?.length ? (
                 <div key={item.href} className="group relative">
@@ -98,7 +98,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             )}
           </nav>
 
-          <Link href="/quote" className="hidden items-center gap-2 rounded-full border border-white px-5 py-2.5 font-poppins text-[11px] font-semibold uppercase tracking-wide transition hover:border-gold hover:text-gold lg:inline-flex">
+          <Link href="/quote" className="hidden items-center gap-2 rounded-full border border-white px-5 py-2.5 font-roboto text-[13px] font-normal uppercase transition hover:border-gold hover:text-gold lg:inline-flex">
             Schedule appointment <DoubleChevron />
           </Link>
 
