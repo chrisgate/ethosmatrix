@@ -22,8 +22,9 @@ export const CheckCircleIcon = ({ className = base }: P) => (
 export const ArrowCircleIcon = ({ className = base }: P) => (
   <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1.500 14.500-1.400-1.400 3.100-3.100-3.100-3.100 1.400-1.400L15.300 12Z" /></svg>
 );
-export const DoubleChevron = ({ className = "h-3 w-3" }: P) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="3" aria-hidden><path d="m6 5 7 7-7 7M13 5l7 7-7 7" /></svg>
+/** Font Awesome "angle-double-right" at the original button's 13px: 11.375 x 13. */
+export const DoubleChevron = ({ className = "h-[13px] w-[11.375px]" }: P) => (
+  <svg viewBox="0 0 448 512" className={className} fill="currentColor" aria-hidden><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.4 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34zm192-34l-136-136c-9.4-9.4-24.6-9.4-33.9 0l-22.6 22.6c-9.4 9.4-9.4 24.6 0 33.9l96.4 96.4-96.4 96.4c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l136-136c9.5-9.2 9.5-24.4.1-33.8z" /></svg>
 );
 /** Font Awesome "caret-down" at the original menu's 14px: 8.75 x 14. */
 export const CaretDown = ({ className = "h-[14px] w-[8.75px]" }: P) => (

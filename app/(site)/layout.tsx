@@ -98,7 +98,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             )}
           </nav>
 
-          <Link href="/quote" className="hidden items-center gap-2 rounded-full border border-white px-5 py-2.5 font-roboto text-[13px] font-normal uppercase transition hover:border-gold hover:text-gold lg:inline-flex">
+          <Link href="/quote" className="hidden items-center gap-2 rounded-[40px] border border-gold pb-3 pl-[18px] pr-2.5 pt-2.5 font-roboto text-[13px] font-normal uppercase leading-[13px] transition hover:bg-gold/15 hover:text-gold lg:inline-flex">
             Schedule appointment <DoubleChevron />
           </Link>
 
