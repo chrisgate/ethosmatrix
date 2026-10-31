@@ -19,7 +19,7 @@ export default async function QuotePage({ searchParams }: { searchParams: Promis
   const budgets = lines(s.quote_budgets);
   const timelines = lines(s.quote_timelines);
   const wa = (s.whatsapp || "").replace(/\D/g, "");
-  const field = "w-full border border-[#e3e3e3] bg-white px-4 py-3 font-quicksand text-[14px] text-[#444] placeholder:text-[#aaa] focus:border-[#c9a98f] focus:outline-none";
+  const field = "w-full border border-[#e3e3e3] bg-white px-4 py-3 font-quicksand text-[16.8px] text-[#3a3a3a] placeholder:text-[#aaa] focus:border-[#c9a98f] focus:outline-none";
   const label = "mb-1.5 block font-quicksand text-[12px] font-semibold uppercase tracking-[.12em] text-[#555]";
   const preselect = types.find((t) => t.toLowerCase() === (sp.service ?? "").toLowerCase()) ?? "";
 
