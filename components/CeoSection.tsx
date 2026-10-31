@@ -18,11 +18,11 @@ export async function CeoSection({ s }: { s: Settings }) {
           </div>
         )}
         <div className="min-[1100px]:absolute min-[1100px]:left-[683px] min-[1100px]:right-0 min-[1100px]:top-1/2 min-[1100px]:-translate-y-1/2">
-          <h2 className="font-quicksand text-[26px] font-normal leading-[1.4] sm:text-[32px]">{s.ceo_heading}</h2>
+          <h2 className="font-quicksand text-[26px] font-normal leading-[1.4] tracking-[1px] sm:text-[32px]">{s.ceo_heading}</h2>
           <span className="rule mt-5 text-white" />
           <p className="mt-6 font-quicksand text-base font-light leading-[1.8] tracking-[.06em] text-[#e0e0e0]">{s.ceo_text}</p>
-          <h2 className="mt-4 inline-block border-b border-white/70 font-quicksand text-[21px] font-normal">{s.ceo_name}</h2>
-          <p className="mt-2 flex items-center gap-2 font-quicksand text-[10px] font-medium uppercase tracking-[.2em] text-white/80">
+          <h2 className="mt-4 inline-block border-b border-white/70 font-quicksand text-[21px] font-normal tracking-[1px]">{s.ceo_name}</h2>
+          <p className="mt-2 flex items-center gap-2 font-quicksand text-[8px] font-normal uppercase tracking-[1.6px] text-white/80">
             {s.ceo_title}<span className="text-[8px]">▶</span>
           </p>
         </div>

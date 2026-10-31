@@ -28,8 +28,8 @@ export default async function AboutPage() {
       <section className="bg-white py-12 sm:py-20">
         <div className="mx-auto grid max-w-[1140px] items-start gap-12 px-5 md:grid-cols-2">
           <div>
-            <h2 className="border-l-2 border-orange pl-4 font-quicksand text-[22px] font-medium leading-snug text-[#222] sm:text-2xl">{s.about_heading}</h2>
-            <div className="mt-8 space-y-5 font-quicksand text-sm font-light leading-[1.9] tracking-wide text-[#666]">
+            <h2 className="border-l-2 border-orange pl-4 font-quicksand text-[26px] font-medium leading-snug text-[#1d1d27] sm:text-[30px]">{s.about_heading}</h2>
+            <div className="mt-8 space-y-5 font-quicksand text-[15px] font-light leading-[1.8] tracking-[1px] text-[#666] [&>p:first-child]:text-black">
               {paragraphs(s.about_page_text).map((p, i) => <p key={i}>{p}</p>)}
             </div>
           </div>
@@ -47,15 +47,15 @@ export default async function AboutPage() {
 
       <section className="bg-cream pb-24 pt-16 sm:pt-24 min-[1100px]:pb-[170px]">
         <div className="mx-auto max-w-[1140px] px-5">
-          <h2 className="text-center font-cormorant text-[40px] font-medium text-[#8b5e3c] sm:text-[56px]">Core Values</h2>
-          <p className="mx-auto mt-5 max-w-[780px] text-center font-quicksand text-xs font-light leading-relaxed text-[#555]">{s.values_intro}</p>
+          <h2 className="text-center font-inter text-[40px] font-light leading-none tracking-[-.5px] text-[#754f38] sm:text-[66px]">Core Values</h2>
+          <p className="mx-auto mt-5 max-w-[780px] text-center font-hind text-[15px] font-normal leading-[26px] text-[#727982]">{s.values_intro}</p>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {values.map(([title, text], i) => (
               <div key={title} className="bg-white p-8 shadow-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`/img/value-${(i % 3) + 1}.png`} alt="" width={48} height={48} className="mb-5 h-12 w-12" />
-                <h3 className="font-quicksand text-[22px] font-light text-[#333]">{title}</h3>
-                <p className="mt-2 font-quicksand text-[13px] font-light leading-relaxed text-[#555]">{text}</p>
+                <h3 className="font-inter text-[28px] font-thin leading-[32px] text-black">{title}</h3>
+                <p className="mt-3 font-hind text-[15px] font-normal leading-[26px] text-[#727982]">{text}</p>
               </div>
             ))}
           </div>
@@ -68,11 +68,11 @@ export default async function AboutPage() {
                 </div>
               </div>
               <div className="border-y border-black/30 py-6">
-                <h3 className="font-poppins text-xl font-bold text-[#222]">Download Our Brochure</h3>
-                <p className="mt-1 border-t border-black/20 pt-2 font-poppins text-[9px] font-bold uppercase tracking-[.2em] text-[#222]">Or read our corporate brochure</p>
+                <h3 className="font-mulish text-[26.6px] font-semibold leading-tight text-[#3f3521]">Download Our Brochure</h3>
+                <p className="mt-1 border-t border-black/20 pt-2 font-mulish text-[9.8px] font-semibold uppercase tracking-[3px] text-[#352404]">Or read our corporate brochure</p>
                 <div className="mt-5 flex flex-wrap gap-3">
-                  <a href={s.brochure_url} download className="rounded-full bg-[#b8a58f] px-6 py-2.5 font-poppins text-[11px] font-semibold text-white hover:opacity-90">Download ⤓</a>
-                  <a href={s.brochure_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#6b7280] px-6 py-2.5 font-poppins text-[11px] font-semibold text-white hover:opacity-90">Content Preview</a>
+                  <a href={s.brochure_url} download className="rounded-full bg-[#b8a58f] px-6 py-2.5 font-roboto text-[15px] font-normal text-white hover:opacity-90">Download ⤓</a>
+                  <a href={s.brochure_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#6b7280] px-6 py-2.5 font-roboto text-[15px] font-normal text-white hover:opacity-90">Content Preview</a>
                 </div>
               </div>
             </div>

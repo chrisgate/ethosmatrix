@@ -113,7 +113,7 @@ export default async function Home() {
             <h1 className="font-cormorant text-[28px] font-semibold leading-[1.35] text-black sm:text-[32px]">{s.intro_heading}</h1>
             <span className="mt-4 block h-px w-full max-w-[340px] bg-black/60" />
             <p className="mt-7 font-raleway text-[8px] font-normal uppercase tracking-[4.7px] text-black">Our story</p>
-            <h2 className="mt-1 font-quicksand text-[32px] font-normal text-black">About us</h2>
+            <h2 className="mt-1 font-quicksand text-[32px] font-normal tracking-[1px] text-black">About us</h2>
             <span className="rule mt-3 text-black" />
             <p className="mt-5 max-w-[476px] font-quicksand text-[15px] font-light leading-[1.8] tracking-[1px] text-black">{s.about_text}</p>
             <Link href="/about" className="btn-gold mt-6">Read More</Link>
@@ -137,7 +137,7 @@ export default async function Home() {
         <section className="bg-[linear-gradient(180deg,#f6e797_0%,#f1ebd9_55%,#ece8df_100%)] stripes pb-20 pt-16 min-[1100px]:pb-[195px]">
           <div className="mx-auto max-w-[1140px] px-5">
             <h2 className="text-center font-quicksand text-[40px] font-semibold text-gold-title sm:text-[52px]">{s.services_title || "Our Services"}</h2>
-            <h3 className="mt-2 text-center font-quicksand text-[18px] font-medium uppercase tracking-[.15em] text-[#624e54] sm:text-2xl">{s.services_subtitle || "Things we do"}</h3>
+            <h3 className="mt-2 text-center font-quicksand text-[18px] font-medium uppercase tracking-[2px] text-[#624e54] sm:text-[23.8px]">{s.services_subtitle || "Things we do"}</h3>
             <div className="mt-12 grid gap-5 md:grid-cols-2">
               {services.map((sv) => (
                 <div key={sv.id} className="zoom-card relative h-[380px] sm:h-[500px]">

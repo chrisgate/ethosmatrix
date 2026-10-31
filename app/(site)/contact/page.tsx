@@ -13,7 +13,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
   const { sent, error } = await searchParams;
   const s = await getSettings();
   const banner = await getMedia(s.banner_contact_id);
-  const field = "w-full border border-[#e3e3e3] bg-white px-4 py-3 font-quicksand text-[13px] text-[#444] placeholder:text-[#aaa] focus:border-[#c9a98f] focus:outline-none";
+  const field = "w-full border border-[#e3e3e3] bg-white px-4 py-3 font-quicksand text-[16.8px] text-[#3a3a3a] placeholder:text-[#aaa] focus:border-[#c9a98f] focus:outline-none";
   const phone = s.phone?.replace(/[^\d+]/g, "");
   const mapSrc = s.map_query
     ? `https://maps.google.com/maps?q=${encodeURIComponent(s.map_query)}&t=&z=16&ie=UTF8&iwloc=&output=embed`
@@ -36,20 +36,20 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
           </div>
           <input name="service" placeholder="Subject" className={field} />
           <textarea name="message" rows={5} placeholder="Message" className={field} />
-          <button type="submit" className="w-full bg-[#d4b09a] py-3.5 font-montserrat text-[9px] font-bold uppercase tracking-[.25em] text-white transition hover:bg-[#c49d86]">
+          <button type="submit" className="w-full bg-[#d4b09a] py-3.5 font-karla text-[13px] font-bold uppercase tracking-[1.5px] text-white transition hover:bg-[#c49d86]">
             Send message
           </button>
         </form>
       </section>
 
       <section className="bg-mist py-10">
-        <div className="mx-auto grid max-w-[900px] gap-8 px-5 text-center font-quicksand text-sm text-[#555] sm:grid-cols-3">
-          <div><div className="font-semibold uppercase tracking-wide text-[#222]">Address</div><p className="mt-1">{s.address}</p></div>
-          <div><div className="font-semibold uppercase tracking-wide text-[#222]">Email</div><p className="mt-1"><a href={`mailto:${s.email}`}>{s.email}</a></p></div>
-          <div><div className="font-semibold uppercase tracking-wide text-[#222]">Phone</div><p className="mt-1"><a href={`tel:${phone}`}>{phone}</a></p></div>
+        <div className="mx-auto grid max-w-[900px] gap-8 px-5 text-center font-quicksand text-[19.6px] leading-[24px] text-[#808291] sm:grid-cols-3">
+          <div><div className="font-bold uppercase tracking-[1px] text-[#222428]">Address</div><p className="mt-1">{s.address}</p></div>
+          <div><div className="font-bold uppercase tracking-[1px] text-[#222428]">Email</div><p className="mt-1"><a href={`mailto:${s.email}`}>{s.email}</a></p></div>
+          <div><div className="font-bold uppercase tracking-[1px] text-[#222428]">Phone</div><p className="mt-1"><a href={`tel:${phone}`}>{phone}</a></p></div>
         </div>
         <div className="mt-8 text-center">
-          <a href={directions} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#161616] px-7 py-3.5 font-playfair text-[13px] text-white hover:bg-black">
+          <a href={directions} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#161616] px-7 py-3.5 font-cormorant text-[16.8px] font-bold capitalize text-white hover:bg-black">
             Get Directions <MapIcon />
           </a>
         </div>

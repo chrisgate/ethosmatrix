@@ -14,7 +14,7 @@ export async function Testimonials() {
   return (
     <section className="bg-mist py-16 sm:py-[110px]">
       <div className="mx-auto max-w-[1000px] px-5">
-        <h2 className="h-accent text-center font-inter text-[32px] font-bold text-navy sm:text-[40px]">Satisfied Customers</h2>
+        <h2 className="h-accent text-center font-inter text-[32px] font-bold text-navy sm:text-[40px] sm:tracking-[-2.2px]">Satisfied Customers</h2>
         <Slider perView={2} perViewMobile={1} autoplay={6000} dots dotActive="bg-orange" className="mt-14" arrows={false}>
           {items.map((t) => (
             <div key={t.id} className="px-3 pb-6">

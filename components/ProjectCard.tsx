@@ -29,9 +29,9 @@ export function ProjectCard({
         </span>
       </div>
       <div className="px-4 pb-7 pt-5 text-center text-white">
-        <h3 className="font-quicksand text-[19px] font-bold leading-snug">{p.title}</h3>
-        <p className="mt-2 font-quicksand text-[10px] font-medium uppercase tracking-[.12em] text-white/80">{label ?? p.categories[0]}</p>
-        <span className="mt-4 inline-block rounded-full bg-gold px-5 py-1.5 font-montserrat text-[9px] font-bold uppercase tracking-[.15em] text-white transition group-hover:bg-gold-dark">
+        <h3 className="font-quicksand text-[24px] font-bold leading-[1.1] sm:text-[30px]">{p.title}</h3>
+        <p className="mt-2 font-quicksand text-[14px] font-bold uppercase text-[#a2a2a2]">{label ?? p.categories[0]}</p>
+        <span className="mt-4 inline-block rounded-full bg-gold px-6 py-2 font-roboto text-[14px] font-normal tracking-[2px] text-white transition group-hover:bg-gold-dark">
           View project
         </span>
       </div>

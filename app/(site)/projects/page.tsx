@@ -28,8 +28,8 @@ export default async function ProjectsPage() {
                 {m && <Image src={`/media/${m.filename}`} alt={c} fill sizes="(min-width:768px) 560px, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />}
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                  <h2 className="font-quicksand text-[26px] font-medium">{c}</h2>
-                  <span className="mt-3 translate-y-2 font-montserrat text-[10px] font-semibold uppercase tracking-[.2em] opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">Project overview</span>
+                  <h2 className="font-quicksand text-[26px] font-semibold sm:text-[36.4px]">{c}</h2>
+                  <span className="mt-3 translate-y-2 font-quicksand text-[14px] font-semibold uppercase tracking-[1.7px] opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">Project overview</span>
                 </div>
               </Link>
             );

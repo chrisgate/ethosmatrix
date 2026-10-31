@@ -129,7 +129,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         <div className="mx-auto grid max-w-[1140px] gap-10 px-5 py-[70px] sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.1fr_1fr]">
           <div>
             <FooterTitle>Contact us</FooterTitle>
-            <ul className="space-y-2 font-poppins text-[13px] font-light leading-relaxed">
+            <ul className="space-y-2 font-poppins text-[15px] font-normal leading-[25px] text-[#ccc]">
               {s.address && <li className="flex gap-3"><PinIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><span>{s.address}</span></li>}
               {s.phone && <li className="flex gap-3"><PhoneIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><a href={`tel:${tel(s.phone)}`} className="inline-block py-2">{s.phone}</a></li>}
               {s.email && <li className="flex gap-3"><MailIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-white/60" /><a href={`mailto:${s.email}`} className="inline-block py-2">{s.email}</a></li>}
@@ -138,7 +138,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           </div>
           <div>
             <FooterTitle>Quick links</FooterTitle>
-            <ul className="space-y-0.5 font-poppins text-[13px] font-light">
+            <ul className="space-y-0.5 font-poppins text-[15px] font-normal leading-[25px] text-[#ccc]">
               {[["/", "Home"], ["/about", "About us"], ["/projects", "Projects"], ["/contact", "Contact us"]].map(([h, l]) => (
                 <li key={h}><Link href={h} className="flex items-center gap-3 py-2 hover:text-gold"><ArrowCircleIcon className="h-3.5 w-3.5 text-white/60" />{l}</Link></li>
               ))}
@@ -146,7 +146,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           </div>
           <div>
             <FooterTitle>Our services</FooterTitle>
-            <ul className="space-y-0.5 font-poppins text-[13px] font-light">
+            <ul className="space-y-0.5 font-poppins text-[15px] font-normal leading-[25px] text-[#ccc]">
               {(services.length ? services.map((x) => [`/services/${x.slug}`, x.title]) : lines(s.footer_services).map((l) => ["/projects", l])).map(([h, l]) => (
                 <li key={h + l}><Link href={h} className="flex items-center gap-3 py-2 hover:text-gold"><CheckCircleIcon className="h-3.5 w-3.5 text-white/60" />{l}</Link></li>
               ))}
