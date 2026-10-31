@@ -85,7 +85,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             {nav.map((item) =>
               item.children?.length ? (
                 <div key={item.href} className="group relative">
-                  <Link href={item.href} className="flex items-center gap-1 py-6 hover:text-gold">{item.label}<CaretDown /></Link>
+                  <Link href={item.href} className="flex items-center py-6 hover:text-gold">{item.label}<span className="ml-[10px] flex"><CaretDown /></span></Link>
                   <div className="invisible absolute left-0 top-full min-w-[230px] bg-black py-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100">
                     {item.children.map(([h, l]) => (
                       <Link key={h} href={h} className="block px-5 py-2.5 normal-case hover:text-gold">{l}</Link>

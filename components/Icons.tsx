@@ -25,8 +25,9 @@ export const ArrowCircleIcon = ({ className = base }: P) => (
 export const DoubleChevron = ({ className = "h-3 w-3" }: P) => (
   <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="3" aria-hidden><path d="m6 5 7 7-7 7M13 5l7 7-7 7" /></svg>
 );
-export const CaretDown = ({ className = "h-3 w-3" }: P) => (
-  <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden><path d="m7 10 5 5 5-5Z" /></svg>
+/** Font Awesome "caret-down" at the original menu's 14px: 8.75 x 14. */
+export const CaretDown = ({ className = "h-[14px] w-[8.75px]" }: P) => (
+  <svg viewBox="0 0 320 512" className={className} fill="currentColor" aria-hidden><path d="M31.3 192h257.4c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z" /></svg>
 );
 export const MapIcon = ({ className = base }: P) => (
   <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden><path d="m9 4-6 2v14l6-2 6 2 6-2V4l-6 2-6-2Zm0 0v14m6-12v14" /></svg>
