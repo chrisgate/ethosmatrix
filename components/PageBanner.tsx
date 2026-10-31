@@ -19,8 +19,13 @@ export function PageBanner({
         <h1 className="font-karla text-[44px] font-bold leading-[1.15] sm:text-[81.2px] sm:tracking-[-4px]">{title}</h1>
         <nav className="mt-3 flex items-center gap-2 font-roboto text-[15px] font-normal sm:text-[18px]" aria-label="Breadcrumb">
           {crumbs.map((c, i) => (
-            <span key={c.label} className="flex items-center gap-2">
-              {i > 0 && <span className="text-[10px]">›</span>}
+            <span key={c.label} className="flex items-center gap-1">
+              {i > 0 && (
+                <span aria-hidden className="flex h-[14px] w-[17px] items-center justify-center">
+                  {/* Font Awesome "angle-right" at 14px, as on the original */}
+                  <svg viewBox="0 0 256 512" className="h-[14px] w-[9px]" fill="currentColor"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z" /></svg>
+                </span>
+              )}
               {c.href ? <Link href={c.href} className="inline-block py-2 hover:text-gold">{c.label}</Link> : <span>{c.label}</span>}
             </span>
           ))}
