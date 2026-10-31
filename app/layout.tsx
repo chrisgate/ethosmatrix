@@ -34,7 +34,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const fonts = [cormorant, quicksand, roboto, poppins, playfair, montserrat, inter, karla, lora, raleway, heebo, mulish, hind].map((f) => f.variable).join(" ");
   return (
     <html lang="en" className={fonts}>
-      <body>{children}</body>
+      {/* browser extensions (Grammarly etc.) add attributes to <body> before React loads */}
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
