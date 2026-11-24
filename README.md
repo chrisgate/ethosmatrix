@@ -51,3 +51,28 @@ existing files. `npm run measure` records each photo's dimensions (used by the g
 - Set `DATABASE_URL`, `SESSION_SECRET` (long random string), `SITE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
 - Host on a Node server/VPS with a **persistent `uploads/` folder** (or mount a volume). Serverless hosts without a disk need an object-storage upload adapter.
 - `npm run build && npm start`. To build without disturbing a running dev server: `NEXT_DIST_DIR=.next-build npx next build`.
+
+## Deploy to Coolify
+The repo has a `Dockerfile`, so Coolify builds it as is (no extra config files).
+
+1. **Push the code** to GitHub or GitLab and merge `feature/revamp` into your main branch.
+2. **Database:** in Coolify, *New resource > PostgreSQL*. Start it and copy its **internal** connection URL.
+3. **App:** *New resource > Application* from your repo. Build pack **Dockerfile**, port **3000**, domain `https://ethosmatrix.com` (point the domain's A record at the server first; Coolify issues the HTTPS certificate).
+4. **Environment variables** (Application > Environment):
+   - `DATABASE_URL` the internal URL from step 2
+   - `SESSION_SECRET` a long random string (`openssl rand -hex 32`)
+   - `SITE_URL` `https://ethosmatrix.com`
+   - `ADMIN_EMAIL`, `ADMIN_PASSWORD` your real admin login (10+ characters)
+   - optional: `SMTP_URL`, `MAIL_TO`, `MAIL_FROM` for enquiry emails
+5. **Persistent storage** (Application > Persistent Storage): add a bind mount, host path `/data/ethosmatrix/uploads`, container path `/app/uploads`. Without it, uploaded images disappear on every deploy.
+6. **Deploy.** The tables are created automatically on the first request.
+7. **Copy your content** (skip if you want to start from the original site's content with `npm run seed` instead):
+   - Export locally, leaving out the dev login and test enquiries:
+     `docker exec ethosmatrix-db-1 pg_dump -U ethos -d ethosmatrix --data-only --exclude-table-data=users --exclude-table-data=appointments > ethos-data.sql`
+   - Import: open the app once so the tables exist, then run the file against the Coolify database (Database > "Make it publicly available" temporarily and use `psql`, or copy the file to the server and use `docker exec -i <db container> psql -U <user> -d <db> < ethos-data.sql`).
+   - Upload the images: copy the local `uploads/` folder into `/data/ethosmatrix/uploads` on the server (`scp -r uploads/* user@server:/data/ethosmatrix/uploads/`).
+8. **Create the admin login:** Application > Terminal, run `npm run admin`. Then sign in at `/admin/login`.
+9. Turn off "publicly available" on the database again if you enabled it.
+
+Redeploys keep the database and the uploads folder; only the code changes.
+

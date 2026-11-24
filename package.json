@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "admin": "node scripts/create-admin.mjs",
     "seed": "node --env-file=.env.local scripts/seed.mjs",
     "seed:reset": "node --env-file=.env.local scripts/seed.mjs --force",
     "optimize": "node --env-file=.env.local scripts/optimize-media.mjs",
